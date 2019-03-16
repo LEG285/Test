@@ -8,6 +8,7 @@ import java.util.List;
 public class TestJava8 {
 
 	public static void main(String[] args) {
+		  
 		
 		//(s1, s2) -> s1.compareTo(s2);
 	   

@@ -21,7 +21,7 @@ public class TestJava8 {
 	    
 	    
 	    names.forEach(System.out::println);
-  
+    
 	    List<String> names1 = new ArrayList<String>();
 	      names1.add("Mahesh ");
 	      names1.add("Suresh ");

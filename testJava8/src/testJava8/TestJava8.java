@@ -9,7 +9,7 @@ public class TestJava8 {
 
 	public static void main(String[] args) {
 		
-		//(s1, s2) -> s1.compareTo(s2);
+	  	//(s1, s2) -> s1.compareTo(s2);
 	   
 /*	    List names = new ArrayList();
 	    

@@ -1,0 +1,994 @@
+/* CSS application(s) PRESTIJ */
+/* Automatisation IJ - Mise en forme des pages html */
+/* Spécifique BPIJ et détail BPIJ */  
+
+html.prestij {
+    width: 100%;
+    height: 100%;
+}
+
+h3 {
+    display: block;
+    font-size: 19px;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: underline;
+}
+
+/* Catégorie <body> */
+body.bpij {
+    font-family: arial;
+    min-width: 1300px;
+    min-height: 90%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    /*	background-image: url("window_warning.png"); 
+    background-attachment: fixed; /* Le fond restera fixe */
+    background-position: top right;
+    /* Le fond sera plac? en haut ? droite */
+    background-color: silver;
+    font-weight: bold;
+}
+
+body.deconnexion {
+    font-family: arial;
+    min-width: 1300px;
+    min-height: 90%;
+    margin-top: 0px;
+    margin-right: 0px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    /* background-image: url("Logohcr.jpg"); */
+    /* background-attachment: fixed; /* Le fond restera fixe */
+    background-position: top right;
+    /* Le fond sera plac? en haut ? droite */
+    background-color: silver;
+    font-weight: bold;
+}
+
+.btn-primary {
+    margin-left: 50px;
+    color: black;
+    background-color: lightgrey;
+    border-color: black;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-danger {
+    margin-left: 100px;
+    font-weight: bold;
+    text-align: center;
+}
+
+body.erreur-session {
+    font-family: arial;
+    min-width: 100%;
+    min-height: 100%;
+    background-color: silver;
+}
+
+/* Catégorie <div> */
+div.erreur-session {
+    width: 1000px;
+    height: 100px;
+    border: 5px solid black;
+    background-color: silver;
+    text-align: center;
+    font-style: oblique;
+    margin-top: 100px;
+    margin-left: 100px;
+}
+
+div.bpij-div1 {
+    margin-top: 5px;
+    margin-right: auto;
+    margin-bottom: 10px;
+    margin-left: auto;
+    width: 100%;
+    color: black;
+    height: auto;
+    text-align: left;
+}
+
+div.bpij-div20 {
+    width: auto;
+    overflow: hidden;
+    margin-top: 5px;
+    height: 560px;
+    margin-left: auto;
+    margin-right: auto;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: auto;
+    overflow-y: auto;
+        
+}
+
+div.bpij-div2 {
+    width: 990px;
+    overflow: hidden;
+    margin-top: 5px;
+    margin-bottom: 4px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.bpij-div3 {
+    margin-top: -83px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 5px;
+    width: 990px;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: auto;
+    overflow-y: auto;
+}
+
+
+div.bpij-div22 {
+    width: 990px;
+    overflow: hidden;
+    margin-top: 15px;
+    height: 120px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.bpij-div32 {
+    margin-top: -82px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 990px;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: auto;
+    overflow-y: auto;
+}
+
+div.bpij2-div2 {
+    width: 1300px;
+    overflow: hidden;
+    margin-top: 15px;
+    height: 450px;
+    margin-left: auto;
+    margin-right: auto;
+     
+}
+
+div.bpij2-div3 {
+    margin-top: -82px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 1300px;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: auto;
+    overflow-y: auto;
+}
+
+footer {
+    position: fixed;
+    height: auto;
+    bottom: 0;
+    width: 100%;
+    
+}
+
+div.footer {
+	width: auto;
+	height: auto;
+	margin-top: 0px;
+    text-align: left;
+    font-size: 12px;
+    font-family: sans-serif;
+    font-style: italic;
+    color: black;
+    background-color: silver;
+    position: absolute; bottom: 0; left: 0; right: 0; 
+}
+
+/* Catégorie <legend> */
+.fieldset {
+  border: 1px solid white;
+  margin-bottom: 2px;
+  padding: 10px;
+}
+
+.legend { 
+    width: auto; /* Or auto */ 
+    padding: 0 5px; /* To give a bit of padding on the left and right */ 
+    margin-bottom: 0px;
+    border: none; 
+    font-size: 16px;
+    font-weight: bold;
+} 
+
+/* Catégorie <label>*/
+label.lab-ref {
+    position: relative;
+    margin-left: 2px;
+
+}
+label.lab-p0 {
+    position: relative;
+    margin-left: 2px;
+}
+label.div1-la1 {
+    position: relative;
+    margin-left: 60px;
+    display: block;
+    width: 150px;
+    float: left;
+}
+
+label.div1-laa {    /*Affichage */
+    font-family: arial;
+    color: blue;
+    position: relative;
+    margin-left: 5px;
+    background-color: floralwhite;
+    padding: 0px;
+    box-shadow:0px 0px 0px black,
+    -0px -0px 0px black;
+}
+/* fin <label> */
+
+/* Catégorie <input-div-i>*/
+input.div1-i {
+    font-family: verdana;
+    font-weight: bold;
+    position: relative;
+    margin-left: 5px;
+}
+
+input.div1-d {    /*disabled alpha*/
+    font-family: verdana;
+    font-weight: bold;
+    color: black;
+    background-color: yellow;
+    position: relative;
+    margin-left: 5px;
+}
+
+input.div1-dm {    /* disabled numérique*/
+    font-family: verdana;
+    font-weight: bold;
+    color: black;
+    background-color: yellow;
+    position: relative;
+    margin-left: 5px;
+    text-align: right;
+}
+
+.div1-s1 {
+    width: 150px;
+    height: 24px;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 30px;
+}
+
+.div1-s2 {
+    width: 150px;
+    height: 24px;
+    font-family: arial;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    margin-left: 2px;
+}
+/* Fin <input-div1>*/
+
+input.entrerS1 {
+    width: 100px;
+    height: 25px;
+    font-family: arial;
+    font-weight: bold;
+    text-align: center;
+}
+
+input.codeT1 {
+    width: 320px;
+    font-family: verdana;
+    font-weight: bold;
+}
+
+input.entrerS1 {
+    width: 100px;
+    height: 25px;
+    font-family: arial;
+    font-weight: bold;
+    text-align: center;
+}
+
+input.pack_Ihidden {
+    width: 0px;
+    height: 0px;
+    visibility: hidden;
+}
+
+/* catégorie <select>*/
+select.div1-i {
+    /*width: 320px;*/
+    font-family: verdana;
+    font-weight: bold;
+    position: relative;
+    margin-left: 5px;
+}
+
+/* Catégorie <Table> BPIJ */
+table.bpij-div2-table1 {
+    border-collapse: separate;
+    border-top-color: blue;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    background-color: azure;
+    width: 990px;
+    height: 35px;
+    overflow: hidden;
+    box-shadow: 10px 10px 0px black;
+    border: 3px solid blue;
+}
+
+table.bpij-div3-table2 {
+    /*	border-collapse: inherit;*/
+    border-collapse: separate;
+    border-top-color: blue;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    background-color: white;
+    width: 990px;
+    height: auto;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: hidden;
+    overflow-y: hidden;
+    border: 3px solid blue;
+}
+
+table.bpij-div3-table3 {
+    /*	border-collapse: inherit;*/
+    border-collapse: separate;
+    border-top-color: blue;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    background-color: white;
+    width: 990px;
+    height: auto;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: auto;
+    overflow-y: auto;
+    border: 3px solid blue;
+}
+
+/* Catégorie <Table> BPIJ */
+table.bpij-div22-table1 {
+    border-collapse: separate;
+    border-top-color: blue;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    background-color: azure;
+    width: 990px;
+    height: 35px;
+    overflow: hidden;
+    box-shadow: 10px 10px 0px black;
+    border: 3px solid blue;
+}
+
+table.bpij-div32-table2 {
+    /*	border-collapse: inherit;*/
+    border-collapse: separate;
+    border-top-color: blue;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    background-color: white;
+    width: 990px;
+    height: auto;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: hidden;
+    overflow-y: hidden;
+    border: 3px solid blue;
+}
+
+table.bpij-div32-table3 {
+    /*	border-collapse: inherit;*/
+    border-collapse: separate;
+    border-top-color: blue;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    background-color: white;
+    width: 990px;
+    height: auto;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: auto;
+    overflow-y: auto;
+    border: 3px solid blue;
+}
+
+table.bpij2-div2-table1 {
+    border-collapse: separate;
+    border-top-color: blue;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    background-color: azure;
+    width: 1300px;
+    height: 350px;
+    overflow: hidden;
+    box-shadow: 10px 10px 0px black;
+    border: 3px solid blue;
+}
+
+table.bpij2-div3-table2 {
+    /*	border-collapse: inherit;*/
+    border-collapse: separate;
+    border-top-color: blue;
+    border-right-color: blue;
+    border-bottom-color: blue;
+    border-left-color: blue;
+    background-color: white;
+    width: 1300px;
+    height: auto;
+    -ms-overflow-x: hidden;
+    overflow-x: hidden;
+    -ms-overflow-y: hidden;
+    overflow-y: hidden;
+    border: 3px solid blue;
+}
+
+/* <table1> <div2> en-tete */
+td.b-h-idflux {
+    width: 255px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    background-color: lightblue;
+}
+
+td.b-h-idfichier {
+    width: 255px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    background-color: lightblue;
+}
+
+td.b-h-dtrans {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    background-color: lightblue;
+}
+
+td.b-h-ip {
+    width: 140px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+    background-color: lightblue;
+}
+
+td.b-h-siren {
+    width: 130px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+   background-color: lightblue;  
+}
+
+/* <div3-td> Ligne IDFLUX */
+td.b-d-idflux {
+    width: 255px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: blue;
+    border: 1px solid blue;
+}
+
+td.b-d-idfichier {
+    width: 255px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    font-size: 15px;
+    color: blue;
+    border: 1px solid blue;
+}
+
+td.b-d-dtrans {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    color: blue;
+    border: 1px solid blue;
+  
+}
+
+td.b-d-ip {
+    width: 140px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    color: blue;
+    border: 1px solid blue;
+    
+}
+
+td.b-d-siren {
+    width: 130px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    color: blue;
+    border: 1px solid blue;
+ 
+}
+
+/* Détail IDflux En-tete */
+td.b-h-ss {
+    width: 115px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+}
+td.b-h-nom {
+    width: 295px;
+    height: auto; 
+    text-align: center;
+    border: 1px solid blue;
+}
+td.b-h-nature {
+    width: 65px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+}
+td.b-h-periode {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+}
+td.b-h-statut {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+}
+td.b-h-detail {
+    width: 65px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+}
+
+/* Détail IDflux Détail */
+td.b-d-ss {
+    width: 115px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+    color: blue;
+    
+}
+td.b-d-nom {
+    width: 295px;
+    height: auto; 
+    text-align: center;
+    border: 1px solid blue;
+    color: blue;
+
+}
+td.b-d-nature {
+    width: 65px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+    color: blue;
+
+}
+td.b-d-periode {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+    color: blue;
+
+}
+td.b-d-statut {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+    color: blue;
+
+}
+td.b-d-detail {
+    width: 65px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+    color: blue;
+}
+
+
+/* BPIJ2 - Tableau en-tête */ 
+th.b2-h-cp {
+    width: 70px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: lightblue;
+    border: 1px solid blue;
+    font-size: 15px;
+}
+th.b2-h-lp {
+    width: 305px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: lightblue;
+    border: 1px solid blue;
+    font-size: 15px;
+}
+th.b2-h-dp {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: lightblue;
+    border: 1px solid blue;
+    font-size: 15px;
+}
+th.b2-h-sin {
+    width: 80px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: lightblue;
+    border: 1px solid blue;
+    font-size: 15px;
+}
+th.b2-h-nbij {
+    width: 50px;
+    height: auto;
+    text-align: center;
+    background-color: lightblue;
+    border: 1px solid blue;
+    font-size: 15px;
+}
+th.b2-h-ijsub {
+    width: 40px;
+    height: auto;
+    text-align: center;
+    background-color: lightblue;
+    border: 1px solid blue;
+    font-size: 15px;
+}
+th.b2-h-pu {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: lightblue;
+    border: 1px solid blue;
+   font-size: 15px;
+}
+th.b2-h-mt {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    background-color: lightblue;
+    border: 1px solid blue;
+    font-size: 15px;
+}
+
+/* BPIJ2 - Tableau détail */ 
+td.b2-d-cp {
+    width: 70px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    color: blue;
+    font-size: 15px;
+}
+td.b2-d-lp {
+    width: 305px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    color: blue;
+    font-size: 15px;
+}
+td.b2-d-dp {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    color: blue;
+    font-size: 15px;
+}
+td.b2-d-sin {
+    width: 80px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    color: blue;
+    font-size: 15px;
+}
+td.b2-d-nbij {
+    width: 50px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+    color: blue;
+    font-size: 15px;
+}
+td.b2-d-ijsub {
+    width: 40px;
+    height: auto;
+    text-align: center;
+    border: 1px solid blue;
+    color: blue;
+    font-size: 15px;
+}
+td.b2-d-pu {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    color: blue;
+    font-size: 15px;
+}
+td.b2-d-mt {
+    width: 100px;
+    height: auto;
+    text-align: center;
+    font-weight: bold;
+    border: 1px solid blue;
+    color: blue;
+    font-size: 15px;
+}
+/* Fin <table>*/
+
+/* Catégorie Liens <a> */
+a:visited {color: black;}
+a:hover {color: red;}
+
+a.lien-bouton {
+    color: black;
+    font-family: verdana;
+    font-size: 10px;
+    padding-top: 7px;
+    padding-right: 100px;
+    padding-bottom: 7px;
+    padding-right: 105px;
+    padding-left: 105px;
+    text-decoration: none;
+    background-image: url("pdf.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-color: #e7e7e7;
+    -webkit-border-radius: 7px 7px 7px 7px;
+    border-radius: 7px 7px 7px 7px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: grey;
+    border-right-color: grey;
+    border-bottom-color: grey;
+    border-left-color: grey;
+}
+
+a.lien-bouton-visu {
+    color: black;
+    font-family: verdana ;
+    font-size: 14px;
+    padding-top: 1px;
+    padding-right: 1px;
+    padding-bottom: 1px;
+    padding-left: 1px;
+    text-decoration: none;
+    background-image: url("pdf.png");
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-color: darkorange;
+    -webkit-border-radius: 7px 7px 7px 7px;
+    border-radius: 7px 7px 7px 7px;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: grey;
+    border-right-color: grey;
+    border-bottom-color: grey;
+    border-left-color: grey;
+}
+
+a.lien-bouton-visu:hover {
+    background-position: left center;
+    border-top-width: 2px;
+    border-right-width: 2px;
+    border-bottom-width: 2px;
+    border-left-width: 2px;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-color: red;
+    border-right-color: red;
+    border-bottom-color: red;
+    border-left-color: red;
+    color: red;
+}
+
+a.deconnexion-menu {
+    position: absolute;
+    margin-top: 350px;
+    margin-left: 100px;
+    width: auto;
+
+    border: none;
+    padding: 6px 0 6px 0;
+    border-radius: 75%;
+    border-bottom: 8px solid #4796f3;
+    font-size: bold 15px;
+    font-family: sans-serif;
+    color: #000000;
+    background: #fff;
+    box-shadow: 3px 2px 3px #999;
+    /**/
+    border-top: 2px solid #59cd27;
+}
+
+a.deconnexion {
+    border: none;
+    padding: 6px 0 6px 0;
+    border-radius: 75%;
+    border-bottom: 8px solid #4796f3;
+    font-size: bold 15px;
+    font-family: sans-serif;
+    color: #000000;
+    background: #fff;
+    box-shadow: 3px 2px 3px #999;
+    /**/
+    border-top: 2px solid #59cd27;
+
+    position: relative;
+    top: 5px;
+    left: 70px;
+}
+
+a.deconnexion:hover {
+    background-color: moccasin;
+    background-image: url(aqua.jpg);
+}
+
+a.bouton {
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 3px;
+    background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0.16, rgb(207, 207, 207)), color-stop(0.79, rgb(252, 252, 252)));
+    /* background-image: -moz-linear-gradient(center bottom, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%); */
+    /* background-image: linear-gradient(to top, rgb(207, 207, 207) 16%, rgb(252, 252, 252) 79%); */
+    padding: 3px;
+    border: 1px solid #000;
+    color: black;
+    text-decoration: none;
+}
+
+a.bouton:hover {
+    background-color: greenyellow;
+    background-image: url(aqua.jpg);
+}
+
+#b {
+    text-align: center;
+    font-family: Arial;
+    color: #3333ff;
+    background-color: #ffcc33;
+}
+
+#italic {
+    color: red;
+    font-family: arial;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+/* Catégorie <Span > */
+span.info {
+    font-weight: bolder;
+    color: blue;
+}
+span.message {
+    align-content: center;
+    color: blue;
+}
+span.erreur {
+    font-weight: bold;
+    color: red;
+}
+
+/* <P>  */
+p.erreur {
+    font-weight: bold;
+    color: red
+}
+p.erreur-menu {
+    position: absolute;
+    top: 520px;
+    left: 45px;
+    width: auto;
+    font-weight: bold;
+    color: red
+}
+
+/* <Option> */
+option.rouge {
+    font-weight: bold;
+    color: red;
+}
+
+option.bleu {
+    font-weight: bold;
+    color: blue;
+}
+
+option.vert {
+    font-weight: bold;
+    color: green;
+}
+
+/* Fin du CSS BPIJ */

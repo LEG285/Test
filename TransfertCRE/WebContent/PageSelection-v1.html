@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/transfert-bootstrap.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css"/>
+    
+    <script src="//code.jquery.com/jquery-1.12.4"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min"></script>
+    <script src="js/datatables"></script> 
+    <script type="text/javascript" src="js/transfert.js"></script>   
+   
+    <title>PRESTIJ - Consultation des flux</title>
+  
+</head>
+
+<body class="import" onload="javascript:document.formulairegestip.cass.focus();">
+<img src="img/logo_home.jpg" width=120 height=50 align="left">
+    
+<script>    
+document.writeln('<h3 align="center">Recherche et consultation des flux GESTIP au ' + DateJour +'</h3><br>');
+</script>   
+    
+    <!-- Partie 1 Formulaire -->
+    <div class="gestip-div1">
+    
+       <form name="formulairegestip" id="myform" onsubmit="return ValidationGlobale(this.form)">
+
+         <!--  <button class="btn btn-primary" type="button" onClick="javascript:alert('Menu....');" >
+               <span class="glyphicon glyphicon-menu-hamburger"></span>
+               Menu
+            </button>
+         --> 
+		  
+            <button class="btn btn-danger" type="button" onClick="javascript:alert('Deconnexion');" >
+               <span class="glyphicon glyphicon-off"></span>
+               D&eacute;connexion
+            </button>
+			 
+			
+          <br><br><fieldset class="fieldset">
+              <legend class="legend">ID CRE</legend>  
+              
+              <!-- ligne s�lection des CRE  -->
+              <label for="assure" class="gestip-div1-la1">N° CRE a transferer :</label>
+			  
+			  <textarea id="gt1" class="gestip-div1-i" textarea name="cass" rows="15" cols="8" 
+ 			  onblur="codeAssure('blur')" onfocus="codeAssure('focus')" onkeypress="VerificationCar(event);">
+			  </textarea>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;    
+			   
+			    
+			  <textarea id="gt2" class="gestip-div1-i" textarea name="cass2" rows="15" cols="8" 
+			   onblur="codeAssure('blur')" onfocus="codeAssure('focus')" onkeypress="VerificationCar(event);">
+			  </textarea>  
+			  
+			  			  
+			  
+<!--           <input id="gt1" class="gestip-div1-i" textarea name="cass" 
+                     size="107" maxlength="7" onblur="codeAssure('blur')" onfocus="codeAssure('focus')" onkeypress="VerificationCar(event);"/>
+-->     
+
+<!--			  <html>
+					  <body>
+
+					  <h2>Textarea</h2>
+					  <p>The textarea element defines a multi-line input field.</p>
+
+					  <form action="/action_page.php">
+					    <textarea name="message" rows="10" cols="30">The cat was playing in the garden.</textarea>
+					    <br><br>
+					    <input type="submit">
+					  </form>
+
+					  </body>
+					  </html>					  
+-->					  
+					     
+<!--             <label for="nss" >Numéro SS</label>
+              <input id="gt2" class="gestip-div1-i" type="text"  name="nss" size="13" 
+                     maxlength="13" onfocus="numeroSS('focus')" onblur="numeroSS('blur')" onkeypress="VerificationCar(event);"/>
+-->
+
+               <!-- 2ème ligne Nom 
+              <br><label for="nom" class="gestip-div1-la1">Nom</label>
+              <input id="gt3" class="gestip-div1-i" type="text" name="nom" size="50" 
+                     maxlength="50" onblur="nomAssure('blur')" onfocus="nomAssure('focus')" onkeypress="VerificationCar(event);"/>
+-->
+					 
+               <!--3ème ligne Prenom  
+              <br><label for="prenom" class="gestip-div1-la1">Prénom</label>
+              <input id="gt4" class="gestip-div1-i" type="text" name="prenom" size="50" 
+                     maxlength="50" onblur="prenomAssure('blur')" onfocus="prenomAssure('focus')" onkeypress="VerificationCar(event);"/>  
+-->                      
+          </fieldset>
+ 
+<!--		           
+          <br><fieldset class="fieldset" >
+              <label for="siren" class="gestip-div1-la1">Siren/Siret</label>
+              <input id="gt5" class="gestip-div1-i" type="text" name="siret" size="14"
+                maxlength="14" onblur="siren('blur')" onfocus="siren('focus')" onkeypress="VerificationCar(event);"/>
+          </fieldset>
+-->
+          
+          <br><fieldset class="fieldset">
+			<legend class="legend">SYSTEME</legend> 
+             
+<!--              <label for="periode" class="gestip-div1-la1">Période du</label>
+              <input id="datedebut6" class="gestip-div1-i" type="text" name="debut"
+                     onblur="dateDebut('blur')" onfocus="dateDebut('focus')" onkeypress="VerificationCar(event);"/>
+              <label for="periode2">au</label>
+              <input id="datefin7" class="gestip-div1-i" type="text" name="fin"
+                     onblur="dateFin('blur')" onfocus="dateFin('focus')" onkeypress="VerificationCar(event);"/>
+--> 
+
+            <label for="statut">&nbsp;&nbsp;&nbsp;&nbsp;Syst&egrave;me source&nbsp;&nbsp;</label>
+              <select name= "stat" id="ListStatut" class="gestip-div1-i" onblur="statut('blur')" onfocus="statut('focus')" onchange="statut('blur');" >
+                 <option selected="selected">PRODUCTION</option>
+                 <option>RECETTE</option>
+                 <option>RECETTE 1</option>
+                 <option>RECETTE 2</option>
+              </select> 
+
+              <label for="statut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vers syst&egrave;me cible &nbsp;&nbsp;</label>
+              <select name= "stat" id="ListStatut" class="gestip-div1-i" onblur="statut('blur')" onfocus="statut('focus')" onchange="statut('blur');" >
+                    <option selected="selected">RECETTE</option>
+                    <option>RECETTE et DEV</option>
+                    <option>DEV</option>
+                    <option>PRODUCTION</option>
+              </select> 
+			                
+              <!-- Boutons validation    
+              <input class="gestip-div1-s1" type="submit" name="entrer" value="Valider" />
+              -->
+              <button class="btn btn-primary" name="entrer" type="submit">
+              <span class="glyphicon glyphicon-ok"></span> Valider </button>
+               
+			  <p>
+			  <a href="file:///J:\APPLIS\GESTIONCOURRIER\COURRIER.EXE">Application courrier</a>
+			  <p>
+				
+				<!-- Boutons validation    
+				VALUE('J:\APPLIS\GESTIONCOURRIER\COURRIER.E+ 
+				XE')                                         	
+				-->
+				
+              <!-- Message -->
+              <br><span class="info">Critères de sélection incorrectes !</span>
+             
+             <!--  
+             <script>document.writeln("<span class=\"info\">Avant Effacer</span>");</script>
+             -->
+               
+             <script>
+            	 alert("Effacer !");
+             </script>             
+              
+             <script>document.writeln("<span class=\"info\">Apres Effacer</span>");</script>
+              
+           </fieldset>
+           
+        </form>
+    </div>
+    
+    <!-- Partie 2 Liste -->
+    <!-- En-tete -->
+ <!--   <div align="center" class="gestip-div2">
+        <table id="gestip">
+           <thead>
+            <tr>
+                <th class="g-h-assu">Assuré</th>
+                <th class="g-h-ss">N° SS</th>                
+                <th class="g-h-nom">Nom / Prénom</th>
+                <th class="g-h-demi">Demande Inscription</th>                
+                <th class="g-h-dtdem">Date Demande</th>                
+                <th class="g-h-stdem">Statut demande</th>
+                <th class="g-h-nivrj">Niveau</th>
+                <th class="g-h-librj">Code et Libellé</th> 
+            </tr>
+        </thead>   
+          
+        <tbody> 
+           Assuré 1 
+            <tr>    
+                <td class="g-d-assu">6501245</td>
+                <td class="g-d-ss">1610175111044</td>                
+                <td class="g-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA</td>
+                <td class="g-d-demi">
+                    ADCOL-2018022311292531111
+                    <br>
+                    IP-JP COLONNA
+                    <br>
+                    SIREN-3845891313 SUPCRE
+                    <br>
+                    NIR-18310940170502 SUPCRE
+                    <br>
+                    PV47265821820160401210 SUPCRE /D01-04-201 / F / R03-07-2017
+                </td>                
+                <td class="g-d-dtdem">15-01-2018</td>                
+                <td class="g-d-stdem">Accepté</td>
+                <td class="g-d-nivrj">ARL<br>CR</td>
+                <td class="g-d-librj">ERR_SUPCRE01 : L’opération SUPCRE n’est pas compatible avec l’élément IP.</td>
+            </tr>
+
+             Assuré 2 
+            <tr>    
+                <td class="g-d-assu">1805045</td>
+                <td class="g-d-ss">2850175111044</td>                
+                <td class="g-d-nom">COLAPINTO<br>CHRISTINE</td>
+                <td class="g-d-demi">
+                    ADCOL-2018022311299999999
+                    <br>
+                    IP-JP COLONNA
+                    <br>
+                    SIREN-3845891313 SUPCRE
+                    <br>
+                    NIR-18310940170502 SUPCRE
+                    <br>
+                    PV47265821820160401210 SUPCRE /D01-04-201 / F / R03-07-2017
+                </td>                
+                <td class="g-d-dtdem">25-08-2018</td>                
+                <td class="g-d-stdem-R">Rejeté</td>
+                <td class="g-d-nivrj-R">ARL<br>CR</td>
+                <td class="g-d-librj-R">ERR_COHERENCE_CRE : Pour une opération de type CRE, l’élément enfant...</td>
+            </tr>
+
+             Assuré 3 
+            <tr>    
+                <td class="g-d-assu">3542520</td>
+                <td class="g-d-ss">2850175111044</td>                
+                <td class="g-d-nom">TOOTOTOTO<br>TITITITIT</td>
+                <td class="g-d-demi">
+                    ADCOL-2018022311299999999
+                    <br>
+                    IP-JP COLONNA
+                    <br>
+                    SIREN-3845891313 SUPCRE
+                    <br>
+                    NIR-18310940170502 SUPCRE
+                    <br>
+                    PV47265821820160401210 SUPCRE /D01-04-201 / F / R03-07-2017
+                </td>                
+                <td class="g-d-dtdem">31-09-2017</td>                
+                <td class="g-d-stdem-R">Rejeté</td>
+                <td class="g-d-nivrj-R">ARL<br>ARL</td>
+                <td class="g-d-librj-R">ERR_COHERENCE_CRE : Pour une opération de type CRE, l’élément enfant...</td>
+            </tr>                      
+                                                                                        
+            </tbody>
+            
+        </table>
+    </div>
+-->    
+</body>
+
+<footer class="footer">
+    <div class="footer">
+        Domaine Prévoyance : Réception automatisée des IJ - Version 1.1 2018    
+    </div>
+</footer>
+
+</html>

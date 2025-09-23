@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/prestij-bpij-bootstrap.css" media="screen" />
+    <link rel="stylesheet" type="text/css" href="css/datatables.min.css">
+     
+     
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    <script type="text/javascript" src="js/datatables.js"></script>       
+    <script type="text/javascript" src="js/prestij.js"></script> 
+    
+    <title>PRESTIJ - Consultation des flux</title>
+    
+</head>
+
+<body class="bpij" onload="javascript:document.formulaireBPIJ.idflux.focus();">
+    <img src="img/logo_home.jpg" width="120" height="50" align="left" data-auteur="Thierry">
+
+    <script>
+        document.writeln('<h3>Recherche des flux BPIJ au ' + DateJour + '</h3><br>');
+    </script>
+
+    <!-- Partie 1 Formulaire -->
+    <div class="bpij-div1">
+
+        <form name="formulaireBPIJ" id="myformb" onsubmit="return ValidationGlobale_BPIJ(this.form)">
+
+          
+            <button class="btn btn-primary" type="button" onClick="javascript:alert('Menu....');" >
+               <span class="glyphicon glyphicon-menu-hamburger"></span>
+               Menu
+            </button>
+           
+            <button class="btn btn-danger" type="button" onClick="javascript:alert('Deconnexion');" >
+               <span class="glyphicon glyphicon-off"></span>
+               D&eacute;connexion
+            </button>
+           
+            <!--
+            <input class="div1-s2" type="button" value="Retour menu" onClick="window.location.href=\'http://localhost:8080/hcr.HcrDeconnexion" />
+            -->
+           
+            <!--
+            <a class="deconnexion" href="http://localhost:8080/hcr.HcrDeconnexion">Déconnexion</a>
+            -->
+             
+            <br><br>
+            <fieldset class="fieldset">
+               <legend class="legend">Référence</legend>
+
+                <!-- IDflux -->
+                
+                <label for="idflux" class="div1-la1">ID Flux</label>
+                <input id="bt1" class="div1-i" type="text" name="idflux" size="50" maxlength="50" onblur="idflux_B('blur')" onfocus="idflux_B('focus')" onkeypress="VerificationCar(event);" />   
+
+                <!-- IDfichier -->
+                <label for="idfichier">ID Fichier</label>
+                <input id="bt2" class="div1-i" type="text" name="idfichier" size="50" maxlength="50" onfocus="idfichier_B('focus')" onblur="idfichier_B('blur')" onkeypress="VerificationCar(event);" />
+
+                <!-- Assuré -->
+                <br><label for="assure" class="div1-la1">N° assuré</label>
+                <input id="bt3" class="div1-i" type="text" name="cass" size="7" maxlength="7" onblur="codeAssure_B('blur')" onfocus="codeAssure_B('focus')" onkeypress="VerificationCar(event);" />
+
+                <!-- Numero SS -->
+                <label for="nss">Numéro SS</label>
+                <input id="bt4" class="div1-i" type="text" name="nss" size="13" maxlength="13" onfocus="numeroSS_B('focus')" onblur="numeroSS_B('blur')" onkeypress="VerificationCar(event);" />
+
+                <!-- Nom -->
+                <br><label for="nom" class="div1-la1">Nom</label>
+                <input id="bt5" class="div1-i" type="text" name="nom" size="50" maxlength="50" onblur="nomAssure_B('blur')" onfocus="nomAssure_B('focus')" onkeypress="VerificationCar(event);" />
+
+                <!-- Prenom -->
+                <br><label for="prenom" class="div1-la1">Prénom</label>
+                <input id="bt6" class="div1-i" type="text" name="prenom" size="50" maxlength="50" onblur="prenomAssure_B('blur')" onfocus="prenomAssure_B('focus')" onkeypress="VerificationCar(event);" />
+            </fieldset>
+
+            <fieldset class="fieldset">
+
+                <label for="nature" class="div1-la1">Nature Assurance</label>
+                <select name="nat" id="ListNature" class="div1-i" onblur="nature_B('blur')" onfocus="nature_B('focus')"        onchange="nature_B('blur');">
+                    <option selected="selected">TOUS</option>
+                    <option>AS - MALADIE</option>   
+                    <option>AT - ACCIDENT du TRAVAIL</option>
+                    <option>MA - MATERNITE</option>
+              </select>
+
+                <label for="periode">Période du</label>
+                <input id="Bdatedebut" class="div1-i" type="text" name="Bdebut" onblur="dateDebut_B('blur')" onfocus="dateDebut_B('focus')" onkeypress="VerificationCar(event);" />
+
+                <label for="periode2">au</label>
+                <input id="Bdatefin" class="div1-i" type="text" name="Bfin" onblur="dateFin_B('blur')" onfocus="dateFin_B('focus')" onkeypress="VerificationCar(event);" />
+
+                <!-- Boutons validation 
+                <input type="submit" name="entrer" value="Valider" />
+                -->
+                <button class="btn btn-primary" name="entrer" type="submit">
+                <span class="glyphicon glyphicon-ok"></span> Valider </button>
+                
+                <!-- Message -->
+                
+                <br><span class="info">Critères de sélection incorrectes !</span>
+            </fieldset>
+
+        </form>
+
+    </div>
+
+    <!--       Partie 2 - niveau 1 Détail IDFLUX     -->
+    
+  <div align="center" class="bpij-div20">
+    
+    <!-- En-tete niveau 1-->
+    <div align="center" class="bpij-div2">
+        <table class="bpij-div2-table1">
+            <tr>
+                <td class="b-h-idflux">ID Flux</td>
+                <td class="b-h-idfichier">ID Fichier</td>
+                <td class="b-h-dtrans">Date transfert</td>
+                <td class="b-h-ip">IP libellé</td>
+                <td class="b-h-siren">Siren déclarant</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ligne IDFLUX niveau 1 -->
+    <div align="center" class="bpij-div3" style="height:40px;">
+        <table class="bpij-div3-table2" style="height:40px;">
+            <tr>
+                <td class="b-d-idflux">E-ENTBPIJ-20161024112914105.xml</td>
+                <td class="b-d-idfichier">E-ENTBPIJ-20161024112914105.xml</td>
+                <td class="b-d-dtrans">15-01-2018</td>
+                <td class="b-d-ip">12345678901234</td>
+                <td class="b-d-siren">123456789 (01234)</td>
+            </tr>
+        </table>
+    </div>
+    
+    <!--       Partie 2 - niveau 2 Détail IDfichier     -->
+    <!-- En-tete niveau 2-->
+    <div align="center" class="bpij-div2">
+        <table class="bpij-div2-table1">
+            <tr>
+                <td class="b-h-ss">Numéro SS</td>
+                <td class="b-h-nom">Nom / Prénom</td>
+                <td class="b-h-nature">Nat. Ass.</td>
+                <td class="b-h-periode">Période</td>
+                <td class="b-h-statut">Statut intég.</td>
+                <td class="b-h-detail">Détail</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Détail niveau 2 -->
+    <div align="center" class="bpij-div3" style="height:400px;">
+        <table class="bpij-div3-table3" style="height:400px;">
+          
+           <!-- Ligne 1 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA</td>
+                <td class="b-d-nature">AS<br>(Maladie)</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+             
+            <!-- Ligne 2 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA1</td>
+                <td class="b-d-nature">AT<br>(Ac.travail)</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            
+           <!-- Ligne 3 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA2</td>
+                <td class="b-d-nature">MA<br>(Maternité)</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                 <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+                                 
+           <!-- Ligne 4 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA3</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                 <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+                    
+           <!-- Ligne 5 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA4</td>
+                <td class="b-d-nature">AT</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail">Visu</td>
+            </tr>
+            
+           <!-- Ligne 6 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA5</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail">Visu</td>
+            </tr>
+                                        
+        </table>
+    </div>    
+    
+    <!-- En-tete niveau 1-->
+    <div align="center" class="bpij-div2">
+        <table class="bpij-div2-table1">
+            <tr>
+                <td class="b-h-idflux">ID Flux</td>
+                <td class="b-h-idfichier">ID Fichier</td>
+                <td class="b-h-dtrans">Date transfert</td>
+                <td class="b-h-ip">IP libellé</td>
+                <td class="b-h-siren">Siren déclarant</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ligne IDFLUX niveau 1 -->
+    <div align="center" class="bpij-div3" style="height:40px;">
+        <table class="bpij-div3-table2" style="height:40px;">
+            <tr>
+                <td class="b-d-idflux">1</td>
+                <td class="b-d-idfichier">1234567890123456789012345</td>
+                <td class="b-d-dtrans">15-01-2018</td>
+                <td class="b-d-ip">123456789012345</td>
+                <td class="b-d-siren">12345678901234</td>
+            </tr>
+        </table>
+    </div>
+    
+    <!--       Partie 2 - niveau 2 Détail IDfichier     -->
+    <!-- En-tete niveau 2-->
+    <div align="center" class="bpij-div2">
+        <table class="bpij-div2-table1">
+            <tr>
+                <td class="b-h-ss">Numéro SS</td>
+                <td class="b-h-nom">Nom / Prénom</td>
+                <td class="b-h-nature">Nat. Ass.</td>
+                <td class="b-h-periode">Période</td>
+                <td class="b-h-statut">Statu intég.</td>
+                <td class="b-h-detail">Détail</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Détail niveau 2 -->
+    <div align="center" class="bpij-div3" style="height:400px;">
+        <table class="bpij-div3-table3" style="height:400px;">
+          
+           <!-- Ligne 1 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+             
+            <!-- Ligne 2 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA1</td>
+                <td class="b-d-nature">MA</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            
+           <!-- Ligne 3 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA2</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                 <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+                                   
+           <!-- Ligne 4 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA3</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                 <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+                    
+           <!-- Ligne 5 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA4</td>
+                <td class="b-d-nature">AT</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail">Visu</td>
+            </tr>
+            
+           <!-- Ligne 6 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA5</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail">Visu</td>
+            </tr>
+                                        
+        </table>
+    </div>    
+
+    <!-- En-tete niveau 1-->
+    <div align="center" class="bpij-div2">
+        <table class="bpij-div2-table1">
+            <tr>
+                <td class="b-h-idflux">ID Flux</td>
+                <td class="b-h-idfichier">ID Fichier</td>
+                <td class="b-h-dtrans">Date transfert</td>
+                <td class="b-h-ip">IP libellé</td>
+                <td class="b-h-siren">Siren déclarant</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- ligne IDFLUX niveau 1 -->
+    <div align="center" class="bpij-div3" style="height:40px;">
+        <table class="bpij-div3-table2" style="height:40px;">
+            <tr>
+                <td class="b-d-idflux">1</td>
+                <td class="b-d-idfichier">1234567890123456789012345</td>
+                <td class="b-d-dtrans">15-01-2018</td>
+                <td class="b-d-ip">123456789012345</td>
+                <td class="b-d-siren">12345678901234</td>
+            </tr>
+        </table>
+    </div>
+    
+    <!--       Partie 2 - niveau 2 Détail IDfichier     -->
+    <!-- En-tete niveau 2-->
+    <div align="center" class="bpij-div2">
+        <table class="bpij-div2-table1">
+            <tr>
+                <td class="b-h-ss">Numéro SS</td>
+                <td class="b-h-nom">Nom / Prénom</td>
+                <td class="b-h-nature">Nat. Ass.</td>
+                <td class="b-h-periode">Période</td>
+                <td class="b-h-statut">Statu intég.</td>
+                <td class="b-h-detail">Détail</td>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Détail niveau 2 -->
+    <div align="center" class="bpij-div3" style="height:400px;">
+        <table class="bpij-div3-table3" style="height:400px;">
+          
+           <!-- Ligne 1 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+             
+            <!-- Ligne 2 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA1</td>
+                <td class="b-d-nature">MA</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            
+           <!-- Ligne 3 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA2</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                 <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+                                   
+           <!-- Ligne 4 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA3</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                 <td class="b-d-detail"><a class="lien-bouton-visu" href="#" onclick="return Visualisation();">Visu</a></td>
+            </tr>
+                    
+           <!-- Ligne 5 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA4</td>
+                <td class="b-d-nature">AT</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail">Visu</td>
+            </tr>
+            
+           <!-- Ligne 6 Nom -->
+            <tr>
+                <td class="b-d-ss">1610175111044</td>
+                <td class="b-d-nom">DEVALEGAMA-GAMACHARIGEYSE<br>RAVI CHINTHAKA5</td>
+                <td class="b-d-nature">AS</td>
+                <td class="b-d-periode">15-01-2018<br>15-01-2018</td>
+                <td class="b-d-statut">EN GEDXXXX</td>
+                <td class="b-d-detail">Visu</td>
+            </tr>
+                                        
+        </table>
+    </div>    
+ </div>   
+</body>
+
+<footer class="footer">
+   <div class="footer">
+        Domaine Prévoyance : Réception automatisée des IJ - Version 1.1 2018    
+    </div>
+</footer>  
+
+</html>

@@ -1,0 +1,9 @@
+eclipse.preferences.version=1
+encoding//src/transfert/outils/BoiteOutils.java=UTF-8
+encoding//src/transfert/outils/ConnexionDriverJDBCIbm.java=UTF-8
+encoding//src/transfert/requetes/RequeteDroitAcces.java=UTF-8
+encoding//src/transfert/requetes/RequeteFluxGestip.java=UTF-8
+encoding//src/transfert/servlet/PageDeconnexion.java=UTF-8
+encoding//src/transfert/servlet/PageLogin.java=UTF-8
+encoding//src/transfert/servlet/PageSelection.java=UTF-8
+encoding//src/transfert/servlet/PrestijAcceuil.java=UTF-8

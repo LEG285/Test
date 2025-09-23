@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PRESTIJ - Consultation des flux</title>
+  <meta charset="utf-8">    
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel=stylesheet type="text/css" href="/transfert/css/transfert.css" media="screen"/>
+  <script type="text/javascript" src="prestIJ.js"></script>
+</head>
+    
+<body class="import">
+<script>document.writeln('<h3 align="center">Controle Dossiers IJ - Extraction à la demande au ' + DateJour + '</h3>');</script>
+
+<fieldset>
+    
+<!-- Partie 1 Affichage et liens  -->
+  <div class="divIJ1">
+       <label for="code">Nombre dossiers saisis à</label>
+       <script>document.writeln('<label for="code">' + HeureJour + '</label>');</script>
+       &nbsp;&nbsp;&nbsp;
+       <a class="bouton" href="http://localhost:8080/hcr2005/hcr.HcrDeconnexion">Rafraichir</a>
+       &nbsp;&nbsp;&nbsp;
+       <a class="bouton" href="http://localhost:8080/hcr2005/hcr.HcrDeconnexion"  
+       onclick="return ConfirmerExtraction();">Demarrrer l'extraction</a>
+       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+       <a class="deconnexion" href="http://localhost:8080/hcr2005/hcr.HcrDeconnexion">Quitter</a> 
+       <br><br>
+  </div>
+    
+<!-- Partie 2 Liste et sélection -->
+  <div align="center" class="divIJ2">
+       <span class="info">Liste dossiers supérieurs à 3000€  : </span>
+       <table class="table1" frame="hsides;border" border="2" cellpadding="1">
+            <tr>
+                <th class="ijgest">Gestionnaire</th>
+                <th class="ijetat">Etat</th>
+                <th class="ijgroupe">Groupe</th>
+                <th class="ijcsoc">Société</th>
+                <th class="ijnsoc">Nom société</th>
+                <th class="ijcass">Assuré</th>
+                <th class="ijnass">Nom assuré</th>
+                <th class="ijdtarr">Date arrêt</th>
+                <th class="ijdtdeb">Début</th>
+                <th class="ijdtfin">Fin</th>
+                <th class="ijmt">Mt réglé</th>
+                <th class="ijprofil">Profil gest.</th>
+                <th class="ijdtcr">Création</th>
+                <th class="ijend"></th>
+            </tr>
+        </table>
+  </div>
+    
+<!-- Partie 3 Liste et sélection -->
+  <div style="height:110px;" align="center" class="divIJ3">
+       <table class="table2" frame="hsides;border" border="1" cellpadding="1">
+             <tr>    
+                <td class="ijgest">JPC-JPCOLONNA</td>
+                <td class="ijetat">C</td>
+                <td class="ijgroupe">ACCOR</td>
+                <td class="ijcsoc">0001009</td>
+                <td class="ijnsoc">IBIS STYLES CHALON SUR SAONE</td>
+                <td class="ijcass">2444043</td>
+                <td class="ijnass">KRISHNAMOORTHYt</td>
+                <td class="ijdtarr">01/10/2011</td>
+                <td class="ijdtdeb">01/10/2011</td>
+                <td class="ijdtfin">20/06/2017</td>
+                <td class="ijmt">3450,54</td>
+                <td class="ijprofil">EAUBRY</td>
+                <td class="ijdtcr">27/07/2017</td>
+            </tr>
+          <tr>    
+                <td class="ijgest">JPC-JPCOLONNA</td>
+                <td class="ijetat">C</td>
+                <td class="ijgroupe">ACCOR</td>
+                <td class="ijcsoc">0001009</td>
+                <td class="ijnsoc">IBIS STYLES CHALON SUR SAONE</td>
+                <td class="ijcass">2444043</td>
+                <td class="ijnass">KRISHNAMOORTHYt</td>
+                <td class="ijdtarr">01/10/2011</td>
+                <td class="ijdtdeb">01/10/2011</td>
+                <td class="ijdtfin">20/06/2017</td>
+                <td class="ijmt">3450,54</td>
+                <td class="ijprofil">EAUBRY</td>
+                <td class="ijdtcr">27/07/2017</td>
+            </tr>
+             <tr>    
+                <td class="ijgest">JPC-JPCOLONNA</td>
+                <td class="ijetat">C</td>
+                <td class="ijgroupe">ACCOR</td>
+                <td class="ijcsoc">0001009</td>
+                <td class="ijnsoc">IBIS STYLES CHALON SUR SAONE</td>
+                <td class="ijcass">2444043</td>
+                <td class="ijnass">KRISHNAMOORTHYt</td>
+                <td class="ijdtarr">01/10/2011</td>
+                <td class="ijdtdeb">01/10/2011</td>
+                <td class="ijdtfin">20/06/2017</td>
+                <td class="ijmt">3450,54</td>
+                <td class="ijprofil">EAUBRY</td>
+                <td class="ijdtcr">27/07/2017</td>
+            </tr>
+             <tr>    
+                <td class="ijgest">JPC-JPCOLONNA</td>
+                <td class="ijetat">C</td>
+                <td class="ijgroupe">ACCOR</td>
+                <td class="ijcsoc">0001009</td>
+                <td class="ijnsoc">IBIS STYLES CHALON SUR SAONE</td>
+                <td class="ijcass">2444043</td>
+                <td class="ijnass">KRISHNAMOORTHYt</td>
+                <td class="ijdtarr">01/10/2011</td>
+                <td class="ijdtdeb">01/10/2011</td>
+                <td class="ijdtfin">20/06/2017</td>
+                <td class="ijmt">3450,54</td>
+                <td class="ijprofil">EAUBRY</td>
+                <td class="ijdtcr">27/07/2017</td>
+            </tr>
+             <tr>    
+                <td class="ijgest">JPC-JPCOLONNA</td>
+                <td class="ijetat">C</td>
+                <td class="ijgroupe">ACCOR</td>
+                <td class="ijcsoc">0001009</td>
+                <td class="ijnsoc">IBIS STYLES CHALON SUR SAONE</td>
+                <td class="ijcass">2444043</td>
+                <td class="ijnass">KRISHNAMOORTHYt</td>
+                <td class="ijdtarr">01/10/2011</td>
+                <td class="ijdtdeb">01/10/2011</td>
+                <td class="ijdtfin">20/06/2017</td>
+                <td class="ijmt">3450,54</td>
+                <td class="ijprofil">EAUBRY</td>
+                <td class="ijdtcr">27/07/2017</td>
+            </tr>
+                                       
+            
+       </table>
+   </div>
+   
+</fieldset>
+
+</body>
+</html>

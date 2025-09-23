@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+   
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="bootstrap-3.3.7-dist/css/bootstrap.min.css">    
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/ui-lightness/jquery-ui.css">
+    <link rel="stylesheet" type="text/css" href="css/transfert-bootstrap.css" media="screen" />
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
+    
+    <script src="//code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>   
+    
+    <!-- 
+    <script type="text/javascript" src="js/transfert.js"></script>
+     -->
+     
+    <title>PRESTIJ - Consultation des flux</title>
+   
+</head>
+    
+<body class="login" onload="javascript:document.login.nom.focus();document.body.style.cursor='default';">
+ 
+    
+<img src="img/logo_home.jpg" width=130 height=70 align="left"> 
+<br><br><br><br><br>
+<form name="login" onsubmit="return ValiderForm(this.form)" action="http://127.0.0.1:59932/transfert/transfert.html" method="post">
+    
+ <fieldset class="fieldset">
+    <legend class="legend">Connexion sur le serveur : cgamrec</legend>
+   <br><br>
+   <label for="nom" class="login">Utilisateur . . . . . . . . . . . . . . . . . . :</label>
+   <input class="login" type="text" placeholder="Login AS/400" id="nom" name="nom" size="20" maxlength="20" required/>
+   <br><br>         
+     
+   <label for="motdepasse" class="login">Mot de passe . . . . . . . . . . . . . . . :</label>
+   <input class="login" type="password" placeholder="Password AS/400" id="motdepasse" 
+          name="motdepasse"  size="20" maxlength="20" required/>
+   
+   <button class="btn btn-primary" name="entrer" type="submit">
+   <span class="glyphicon glyphicon-ok"></span> Valider </button>
+   
+   <br><br><br>
+     
+   <span class="erreur">Erreur Login ou Mot de passe</span>	              
+
+ </fieldset> 
+    
+</form>
+
+</body>
+   
+<footer class="footer">
+   <div class="footer">
+        Domaine Prévoyance : Réception automatisée des IJ - Version 1.1 2018    
+    </div>
+</footer>     
+   
+   
+    
+</html>

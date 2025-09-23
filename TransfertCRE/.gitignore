@@ -1,0 +1,10 @@
+/.settings/
+/.sts4-cache/
+/bin/
+/build/
+/target/
+.classpath
+.project
+.tern-project
+
+

@@ -90,6 +90,24 @@ function codeAssure(type) {
           document.getElementById("gt1").style.color = "black"; 
        }
     }
+	
+	// ---------------------------------------------------------------
+	// Controle longeur de chaque code assuré saisie dans la textearea
+	// --------------------------------------------------------------- 
+	if (type == "blur" && assure.trim != "") {
+	   var position = assure.indexOf("\n"); 
+	    if (position != 11) {   // Saisie KO  ----------------
+	       //console.log(touche1);
+	       //if (touche1 != 13) {   // <> de la touche Entrée 
+	          alert("Le code CRE doit toujours \u00eatre num\u00e9rique ! ");
+	          Erreur[0] = true;
+	          document.getElementById("gt1").focus();
+	          document.getElementById("gt1").value= "";
+	          document.getElementById("Msg").innerHTML = "  ";
+	       //}
+	    }
+	}
+	
     // Blur du code Assuré
     if (type == "blur" && assure.trim != "") {
 	   assure = assure.replace(/(\r\n|\n|\r)/gm,"");

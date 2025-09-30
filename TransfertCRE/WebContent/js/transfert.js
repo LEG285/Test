@@ -92,7 +92,7 @@ function codeAssure(type) {
     }
 	  
 	// ---------------------------------------------------------------
-	// Controle longeur de chaque code assuré saisie dans la textearea
+	// Controle longueur de chaque code assuré saisie dans la textearea
 	// --------------------------------------------------------------- 
 	if (type == "blur" && assure.trim != "") {
 		

@@ -101,7 +101,7 @@ public class HTMLheader {
             sbh.append("<script type=\"text/javascript\" src=\"js/datatables.js\"></script>");
             sbh.append("<script type=\"text/javascript\" src=\"js/transfert.js\"></script>");
             sbh.append("<script type=\"text/javascript\" src=\"js/plug-in-jquery.js\"></script>");
-              
+               
  	        sbh.append("<!-- Si la version du navigateur est inférieure a IE 9,.... -->");
 	        sbh.append("<!--[if lt IE 9]>");
 	        sbh.append("  <script src=\"//html5shim.googlecode.com/svn/trunk/html5.js\"></script>");

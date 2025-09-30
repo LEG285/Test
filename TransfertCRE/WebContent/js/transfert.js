@@ -106,8 +106,7 @@ function codeAssure(type) {
 	          document.getElementById("gt1").value= "";
 	          document.getElementById("Msg").innerHTML = "  ";
 	      //}
-	   }     
-	          
+	   }       
 	   var position = assure.indexOf("\n", 12); 
 	   if (position != 23 && position != -1) {       // Saisie KO  ----------------
 	   	      //console.log(touche1);

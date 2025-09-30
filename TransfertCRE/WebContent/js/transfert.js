@@ -119,7 +119,12 @@ function codeAssure(type) {
 	   	      //}
 	   	 }	     
 	   
-	}  // ----------------------------------------------------------
+	}  
+	// ----------------------------------------------------------------------
+	// Etudier la possibilité de faire des zones texte HTML plutot que des Textarea
+	// Plus simple pour les controles et la gestion
+	// à voir avec Saran
+	// ----------------------------------------------------------------------  	
 	
     // Blur du code Assuré
     if (type == "blur" && assure.trim != "") {

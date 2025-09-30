@@ -118,7 +118,7 @@ function codeAssure(type) {
 	   	          document.getElementById("gt1").value= "";
 	   	          document.getElementById("Msg").innerHTML = "  ";
 	   	      //}
-	   	 }	   
+	   	 }	     
 	   
 	}  // ----------------------------------------------------------
 	

@@ -125,7 +125,7 @@ function codeAssure(type) {
 	// Plus simple pour les controles et la gestion
 	// à voir avec Saran
 	// ----------------------------------------------------------------------  	
-	
+	  
     // Blur du code Assuré
     if (type == "blur" && assure.trim != "") {
 	   assure = assure.replace(/(\r\n|\n|\r)/gm,"");

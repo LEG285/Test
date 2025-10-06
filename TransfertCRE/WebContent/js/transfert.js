@@ -47,7 +47,7 @@ function VerificationCar(e) {
 } // Fin VerificationCar
 
 //********************************************************
-//     Gestion du formulaire ID CRE 
+//     Gestion formulaire ID CRE 
 //******************************************************** 
 
 // Gestion saisie des codes CRE Colonne 1 ----------------  
@@ -69,11 +69,9 @@ function codeAssure(type) {
     document.getElementById("ListCible").style.backgroundColor = ""; 
     document.getElementById("ListCible").style.color = "black";  
     
-    // Récupération valeur code assuré (numérique sur 7 maxi)
-    // A revoir c'est un TextArea
-    //formulaire = document.getElementById("myform").name;
-    
     var assure = document.getElementById("gt1").value;
+	//alert("Longueur code CRE saisi : " + assure.length );	
+	
     Erreur[0] = false; 
     
     // Focus du code Assuré 
@@ -83,50 +81,74 @@ function codeAssure(type) {
     }
     if (type == "focus" && assure != "") {
        if (isNaN(assure)) {
-          document.getElementById("gt1").value= "";
+         // document.getElementById("gt1").value= "";
        }
        else { 
           document.getElementById("gt1").style.backgroundColor = "yellow"; 
           document.getElementById("gt1").style.color = "black"; 
        }
+	   
     }
 	  
 	// ---------------------------------------------------------------
-	// Controle longueur de chaque code assuré saisie dans la textearea
+	// Controler longueur de chaque code assuré saisie dans la textearea
+	// Solution a trouver, ajout d'un message ou autre pour la saisie .... 
 	// --------------------------------------------------------------- 
-	if (type == "blur" && assure.trim != "") {
-		
-	   var position = assure.indexOf("\n", 0); 
-	   if (position != 11 && position != -1) {      // Saisie KO  ----------------
-	      //console.log(touche1);
-	      //if (touche1 != 13) {   // <> de la touche Entrée 
-	          alert("La longueur du code CRE doit toujours \u00eatre de 11 caract\u00e9res ! ");
-	          Erreur[0] = true;
-	          document.getElementById("gt1").focus();
-	          document.getElementById("gt1").value= "";
-	          document.getElementById("Msg").innerHTML = "  ";
-	      //}
-	   }       
-	   var position = assure.indexOf("\n", 12); 
-	   if (position != 23 && position != -1) {       // Saisie KO  ----------------
-	   	      //console.log(touche1);
-	   	      //if (touche1 != 13) {   // <> de la touche Entrée 
-	   	          alert("La longueur du code CRE doit toujours \u00eatre de 11 caract\u00e9res ! ");
-	   	          Erreur[0] = true;
-	   	          document.getElementById("gt1").focus();
-	   	          document.getElementById("gt1").value= "";
-	   	          document.getElementById("Msg").innerHTML = "  ";
-	   	      //}
-	   	 }	     
+    //	if (type == "blur" && assure.trim != "") {
+    //		
+    //	   var position = assure.indexOf("\n", 0); 
+    //	   
+    //	   assure = assure.replace(/(\r\n|\n|\r|\t)/gm,"");
+    //	   
+    //	   console.log("1 " + assure.slice(0, 11));
+    //	   console.log("2 " + assure.slice(11, 22));
+    //	   console.log("3 " + assure.slice(22, 33));
+    //	   console.log("4 " + assure.slice(33, 44));
+    //	   console.log("5 " + assure.slice(44, 55));
+    //	   console.log("6 " + assure.slice(55, 66));
+    //	   console.log("7 " + assure.slice(66, 77));
+    //	   console.log("8 " + assure.slice(77, 88));
+    //	   console.log("9 " + assure.slice(88, 99));
+    //	   console.log("10 " + assure.slice(99, 110));
+    //	   
+    //	}
 	   
-	}  
-	// ----------------------------------------------------------------------
-	// Etudier la possibilité de faire des zones texte HTML plutot que des Textarea
-	// Plus simple pour les controles et la gestion
-	// à voir avec Saran
-	// ----------------------------------------------------------------------  	
-	  
-    // Blur du code Assuré
+	  // var longueur = assure.lenght;
+	   
+	   //if (assure.length != 11) {
+	   //	  alert("La longueur du code CRE doit toujours \u00eatre de 11 caract\u00e9res ! elle est : " + assure.length );
+	   //	  Erreur[0] = true;
+	   //	  document.getElementById("gt1").focus();
+	   //	  // document.getElementById("gt1").value= "";
+	   //	  document.getElementById("Msg").innerHTML = "  ";
+	   //  }
+	   
+//	   if (position != 11 && position != -1) {      // Saisie KO  ----------------
+//	      //console.log(touche1);
+//	      //if (touche1 != 13) {   // <> de la touche Entrée 
+//	          alert("La longueur du code CRE doit toujours \u00eatre de 11 caract\u00e9res ! ");
+//	          Erreur[0] = true;
+//	          document.getElementById("gt1").focus();
+//	          //document.getElementById("gt1").value= "";
+//	          document.getElementById("Msg").innerHTML = "  ";
+//	      //}
+//	   }      
+//	    
+//	   var position = assure.indexOf("\n", 12); 
+//	   if (position != 23 && position != -1) {       // Saisie KO  ----------------
+//	   	      //console.log(touche1);
+//	   	      //if (touche1 != 13) {   // <> de la touche Entrée 
+//	   	          alert("La longueur du code CRE doit toujours \u00eatre de 11 caract\u00e9res ! ");
+//	   	          Erreur[0] = true;
+//	   	          document.getElementById("gt1").focus();
+//	   	         // document.getElementById("gt1").value= "";
+//	   	          document.getElementById("Msg").innerHTML = "  ";
+//	   	      //}
+//	   	 }	     
+	   
+//	}  
+	
+    // Blur code CRE 1
     if (type == "blur" && assure.trim != "") {
 	   assure = assure.replace(/(\r\n|\n|\r)/gm,"");
        if (isNaN(assure)) {   // Saisie KO  ----------------
@@ -135,11 +157,11 @@ function codeAssure(type) {
              alert("Le code CRE doit toujours \u00eatre num\u00e9rique ! ");
              Erreur[0] = true;
              document.getElementById("gt1").focus();
-             document.getElementById("gt1").value= "";
+             /*document.getElementById("gt1").value= ""; */
              document.getElementById("Msg").innerHTML = "  ";
           }
        }
-       else {                // Saisie OK -> passer au champ suivant 
+       else {                 // Saisie OK -> passer au champ suivant 
           document.getElementById("gt1").style.backgroundColor = "";
           document.getElementById("gt1").style.color = "green";
           document.getElementById("gt2").focus();   
@@ -153,7 +175,7 @@ function codeAssure(type) {
     return;     // Fin fonction codeAssure colonne 1
 }
 
-// Gestion saisie code CRE Colonne 2 ----------------------
+// Gestion saisie code CRE 2 --Colonne 2 ----------------------
 function codeAssure2(type) {
     
     // Initialisation 
@@ -168,7 +190,7 @@ function codeAssure2(type) {
     }
     if (type == "focus" && assure2.trim != "") {
        if (isNaN(assure2)) {
-          document.getElementById("gt2").value= "";
+         //document.getElementById("gt2").value= "";
        }
        else { 
           document.getElementById("gt2").style.backgroundColor = "yellow"; 
@@ -180,13 +202,13 @@ function codeAssure2(type) {
     // Blur du code Assuré
     if (type == "blur" && assure2.trim != "") {
 	   assure2 = assure2.replace(/(\r\n|\n|\r)/gm,"");
-       if (isNaN(assure2)) {      // Saisie KO -------- 
+       if (isNaN(assure2)) {       // Saisie KO -------- 
           //console.log(touche1);
-          if (touche1 != 13) {    // <> de la touche Entrée 
+          if (touche1 != 13) {     // <> de la touche Entrée 
              alert("Le code CRE doit toujours \u00eatre num\u00e9rique ! ");
              Erreur[1] = true;
              document.getElementById("gt2").focus();
-             document.getElementById("gt2").value= "";
+             //document.getElementById("gt2").value= "";
              document.getElementById("Msg").innerHTML = "  "; 
           }
        
@@ -205,14 +227,6 @@ function codeAssure2(type) {
     return;     // Fin fonction codeAssure colonne 2
 }
 
-// <textarea id="gt1" class="gestip-div1-i" textarea name="cass" rows="15" cols="9" maxlength="168" 
-// onblur="codeAssure('blur')" onfocus="codeAssure('focus')" onkeypress="VerificationCar(event);">
-// </textarea>&nbsp;&nbsp;&nbsp;&nbsp;  
-
-// <textarea id="gt2" class="gestip-div1-i" textarea name="cass2" rows="15" cols="9" maxlength="168" 
-//    onblur="codeAssure2('blur')" onfocus="codeAssure2('focus')" onkeypress="VerificationCar(event);">
-// </textarea> 
-
 // Gestion saisie nom adhérent ----------------------
 function nomAdherent(type) {
     
@@ -228,7 +242,7 @@ function nomAdherent(type) {
     }
     if (type == "focus" && assure2.trim != "") {
        if (isNaN(assure2)) {
-          document.getElementById("gt2").value= "";
+          //document.getElementById("gt2").value= "";
        }
        else { 
           document.getElementById("gt2").style.backgroundColor = "yellow"; 
@@ -246,7 +260,7 @@ function nomAdherent(type) {
              alert("Le code CRE doit toujours \u00eatre num\u00e9rique ! ");
              Erreur[1] = true;
              document.getElementById("gt2").focus();
-             document.getElementById("gt2").value= "";
+             //document.getElementById("gt2").value= "";
              document.getElementById("Msg").innerHTML = "  "; 
           }
        
@@ -392,7 +406,7 @@ function ValidationGlobale(formulaire) {
        alert("Le code CRE doit toujours \u00eatre num\u00e9rique ! ");
        Erreur[0] =true;
        document.getElementById("gt1").focus();
-       document.getElementById("gt1").value= "";
+      // document.getElementById("gt1").value= "";
        document.getElementById("Msg").innerHTML = "  ";
        return false;
     }  
@@ -405,7 +419,7 @@ function ValidationGlobale(formulaire) {
        alert("Le code CRE doit toujours \u00eatre num\u00e9rique ! ");
        Erreur[1] =true;
        document.getElementById("gt2").focus();
-       document.getElementById("gt2").value= "";
+    // document.getElementById("gt2").value= "";
        document.getElementById("Msg").innerHTML = "  ";
        return false;
     }
@@ -415,7 +429,7 @@ function ValidationGlobale(formulaire) {
        alert("Le code CRE est obligatoire ! ");
        Erreur[0] =true;
        document.getElementById("gt1").focus();
-       document.getElementById("gt1").value= "";
+       //document.getElementById("gt1").value= "";
        document.getElementById("Msg").innerHTML = "  ";
        return false;
      } 

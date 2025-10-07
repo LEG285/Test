@@ -34,7 +34,7 @@ var HeureJour = heure + "h" + minutes +"m";
 var touche1;
 
 // Erreurs détectées  
-var Erreur = new Array();    // CRE
+var Erreur = new Array();    
 
 //********************************************************
 // Fonction Verification Caractère
@@ -47,7 +47,7 @@ function VerificationCar(e) {
 } // Fin VerificationCar
 
 //********************************************************
-//     Gestion formulaire ID CRE 
+//     Gestion formulaire 
 //******************************************************** 
 
 // Gestion saisie des codes CRE Colonne 1 ----------------  
@@ -233,66 +233,55 @@ function nomAdherent(type) {
     // Initialisation 
     document.body.style.cursor = 'default';  
     var nomadherent = document.getElementById("nomadh").value;
-    Erreur[1] = false; 
+    Erreur[2] = false; 
     
-    // Focus du code Assuré 
-    if (type == "focus" && nomadherent.trim == "") {
-       document.getElementById("gt2").style.backgroundColor = "yellow"; 
-       document.getElementById("gt2").style.color = "black";     
+    // Focus nom adhérent 
+    if (type == "focus" && nomadherent == "") {
+       document.getElementById("nomadh").style.backgroundColor = "yellow"; 
+       document.getElementById("nomadh").style.color = "black";     
     }
-    if (type == "focus" && assure2.trim != "") {
-       if (isNaN(assure2)) {
-          //document.getElementById("gt2").value= "";
-       }
-       else { 
-          document.getElementById("gt2").style.backgroundColor = "yellow"; 
-          document.getElementById("gt2").style.color = "black"; 
-       }
-       
-    }
-     
-    // Blur du code Assuré
-    if (type == "blur" && assure2.trim != "") {
-	   assure2 = assure2.replace(/(\r\n|\n|\r)/gm,"");
-       if (isNaN(assure2)) {      // Saisie KO -------- 
-          //console.log(touche1);
-          if (touche1 != 13) {    // <> de la touche Entrée 
-             alert("Le code CRE doit toujours \u00eatre num\u00e9rique ! ");
-             Erreur[1] = true;
-             document.getElementById("gt2").focus();
-             //document.getElementById("gt2").value= "";
-             document.getElementById("Msg").innerHTML = "  "; 
-          }
-       
-       }
-       else {   // Saisie OK -> passer au champ suivant 
-          document.getElementById("gt2").style.backgroundColor = "";
-          document.getElementById("gt2").style.color = "green";
-          //document.getElementById("ListSource").focus();
-       }
+	
+    // Blur nom adhérent
+    if (type == "blur" && nomadherent.trim != "") {  // Saisie OK 
+		document.getElementById("nomadh").style.backgroundColor = "";
+		document.getElementById("nomadh").style.color = "green";
+		document.getElementById("prenomadh").focus();    
+     }
         
-    }
-    if (type == "blur" && assure2.trim == "") {
-        document.getElementById("gt2").style.backgroundColor = "";
+    if (type == "blur" && nomadherent.trim == "") {
+        document.getElementById("nomadh").style.backgroundColor = "";
     }
 
-    return;     // Fin fonction codeAssure colonne 2
+    return;     // Fin fonction nom adhérent 
 }
 
+// Gestion saisie nom adhérent ----------------------
+function prenomAdherent(type) {
+    
+    // Initialisation 
+    document.body.style.cursor = 'default';  
+    var prenomadh = document.getElementById("prenomadh").value;
+    Erreur[3] = false; 
+    
+    // Focus nom adhérent 
+    if (type == "focus" && prenomadh == "") {
+       document.getElementById("prenomadh").style.backgroundColor = "yellow"; 
+       document.getElementById("prenomadh").style.color = "black";     
+    }
+	
+    // Blur nom adhérent
+    if (type == "blur" && nomadherent.trim != "") {     // Saisie OK 
+		document.getElementById("prenomadh").style.backgroundColor = "";
+		document.getElementById("prenomadh").style.color = "green";
+		    
+     }
+        
+    if (type == "blur" && nomadherent.trim == "") {
+        document.getElementById("prenomadh").style.backgroundColor = "";
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    return;     // Fin fonction nom adhérent 
+}
 
 
 
@@ -482,46 +471,8 @@ function ValidationGlobale(formulaire) {
 //*************************************************************************************
 $(function() { 
 
-// Date début sélection période formulaire GESTIP
-$( "#datedebut6" ).datepicker( {
-    autoSize: "true",
-    altField: "#datedebut6",
-    closeText: 'Fermer',
-    prevText: 'Pr&eacute;c&eacute;dent',
-    nextText: 'Suivant',
-    currentText: 'Aujourd\'hui',
-    monthNames: ['Janvier', 'F&eacute;vrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'A&eacute;t', 'Septembre', 'Octobre', 'Novembre', 'D&eacute;cembre'],
-    monthNamesShort: ['Janv.', 'F&eacute;vr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Ao&eacute;t', 'Sept.', 'Oct.', 'Nov.', 'D&eacute;c.'],
-    dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-    dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-    dayNamesMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
-    weekHeader: 'Sem.',
-    dateFormat: 'dd-mm-yy' ,   
-    firstDay: "1"
-	});
-
-// Date fin sélection période formulaire GESTIP   
-$("#datefin7").datepicker({
-  autoSize: "true",
-  altField: "#datefin7",
-  closeText: 'Fermer',
-  prevText: 'Pr&eacute;c&eacute;1dent',
-  nextText: 'Suivant',
-  currentText: 'Aujourd\'hui',
-  monthNames: ['Janvier', 'F&eacute;vrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao&eacute;t', 'Septembre', 'Octobre', 'Novembre', 'D&eacute;cembre'],
-  monthNamesShort: ['Janv.', 'F&eacute;vr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Ao&eacute;t', 'Sept.', 'Oct.', 'Nov.', 'D&eacute;c.'],
-  dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-  dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-  dayNamesMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
-  weekHeader: 'Sem.',
-  dateFormat: 'dd-mm-yy' ,   
-  firstDay: "1"
-  });
-  // Initialisation date jour       
-  $("#datefin7").val($.datepicker.formatDate('dd-mm-yy', new Date()));
-
-// Date début sélection période formulaire BPIJ
-$("#Bdatedebut").datepicker( {
+// Date sélection CRE 
+$("#BdateCRE").datepicker( {
   autoSize: "true",
   altField: "#Bdatedebut",
   closeText: 'Fermer',
@@ -538,26 +489,8 @@ $("#Bdatedebut").datepicker( {
   firstDay: "1"
   });    
 
-// Date fin sélection période formulaire BPIJ   
-$( "#Bdatefin" ).datepicker({
-  autoSize: "true",
-  altField: "#Bdatefin",
-  closeText: 'Fermer',
-  prevText: 'Pr&eacute;c&eacute;dent',
-  nextText: 'Suivant',
-  currentText: 'Aujourd\'hui',
-  monthNames: ['Janvier', 'F&eacute;vrier', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Ao&eacute;t', 'Septembre', 'Octobre', 'Novembre', 'D&eacute;cembre'],
-  monthNamesShort: ['Janv.', 'F&eacute;vr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Ao&eacute;t', 'Sept.', 'Oct.', 'Nov.', 'D&eacute;c.'],
-  dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
-  dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
-  dayNamesMin: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa'],
-  weekHeader: 'Sem.',
-  dateFormat: 'dd-mm-yy' ,   
-  firstDay: "1"
-  });    
-
   // Initialisation date jour       
-  $("#Bdatefin").val($.datepicker.formatDate('dd-mm-yy', new Date()));
+  //$("#BdateCRE").val($.datepicker.formatDate('dd-mm-yy', new Date()));
   
 //Tableau prestation
   $('#gestip').dataTable({

@@ -227,65 +227,100 @@ function codeAssure2(type) {
     return;     // Fin fonction codeAssure colonne 2
 }
 
-// Gestion saisie nom adhérent ----------------------
-function nomAdherent(type) {
+// Type courrier  ----------------------------------------------
+function typeCourrier(type) {
     
     // Initialisation 
     document.body.style.cursor = 'default';  
-    var nomadherent = document.getElementById("nomadh").value;
+    var typecourrier = document.getElementById("typecou").value;
     Erreur[2] = false; 
     
-    // Focus nom adhérent 
-    if (type == "focus" && nomadherent == "") {
-       document.getElementById("nomadh").style.backgroundColor = "yellow"; 
-       document.getElementById("nomadh").style.color = "black";     
+    // Focus  
+    if (type == "focus" && typecourrier == "") {
+       document.getElementById("typecou").style.backgroundColor = "yellow"; 
+       document.getElementById("typecou").style.color = "black";     
     }
 	
-    // Blur nom adhérent
-    if (type == "blur" && nomadherent.trim != "") {  // Saisie OK 
-		document.getElementById("nomadh").style.backgroundColor = "";
-		document.getElementById("nomadh").style.color = "green";
-		document.getElementById("prenomadh").focus();    
+    // Blur 
+    if (type == "blur" && typecourrier.trim != "") {  // Saisie OK 
+		document.getElementById("typecou").style.backgroundColor = "";
+		document.getElementById("typecou").style.color = "green";
+		document.getElementById("codeadh").focus();    
      }
         
-    if (type == "blur" && nomadherent.trim == "") {
-        document.getElementById("nomadh").style.backgroundColor = "";
+    if (type == "blur" && typecourrier.trim == "") {
+        document.getElementById("typecou").style.backgroundColor = "";
     }
 
-    return;     // Fin fonction nom adhérent 
+    return;     // Fin fonction
 }
 
-// Gestion saisie nom adhérent ----------------------
-function prenomAdherent(type) {
+// Code adhérent  -----------------------------------------------
+function codeAdherent(type) {
     
     // Initialisation 
     document.body.style.cursor = 'default';  
-    var prenomadh = document.getElementById("prenomadh").value;
+    var codeadh = document.getElementById("codeadh").value;
     Erreur[3] = false; 
     
-    // Focus nom adhérent 
-    if (type == "focus" && prenomadh == "") {
-       document.getElementById("prenomadh").style.backgroundColor = "yellow"; 
-       document.getElementById("prenomadh").style.color = "black";     
+    // Focus 
+    if (type == "focus" && codeadh == "") {
+       document.getElementById("codeadh").style.backgroundColor = "yellow"; 
+       document.getElementById("codeadh").style.color = "black";     
     }
 	
-    // Blur nom adhérent
-    if (type == "blur" && nomadherent.trim != "") {     // Saisie OK 
-		document.getElementById("prenomadh").style.backgroundColor = "";
-		document.getElementById("prenomadh").style.color = "green";
+    // Blur 
+    if (type == "blur" && codeadh.trim != "") {     // Saisie OK 
+		document.getElementById("codeadh").style.backgroundColor = "";
+		document.getElementById("codeadh").style.color = "green";
 		    
      }
         
-    if (type == "blur" && nomadherent.trim == "") {
-        document.getElementById("prenomadh").style.backgroundColor = "";
+    if (type == "blur" && codeadh.trim == "") {
+        document.getElementById("codeadh").style.backgroundColor = "";
     }
 
-    return;     // Fin fonction nom adhérent 
+    return;     // Fin fonction 
 }
 
+// Date CRE ---------------------------------------------------
+function dateCRE(type) {
+    
+	// Controle si erreur sur code colonne 1 
+	if (Erreur[0]) {
+	    document.getElementById("gt1").focus();
+	    return;
+	}
+	// Controle si erreur sur code colonne 2 
+	if (Erreur[1]) {
+	    document.getElementById("gt2").focus();
+	    return;
+	}
+	
+    // Ajouter controles si erreur sur autre champ
+    if (Erreur[5]) {
+        document.getElementById("gt5").focus();
+        return;
+    }
+	
+    // Récupération de la date fin (JJ/MM/AAAA)
+    var dateCRE = document.getElementById("datecr").value;
+    
+    // Focus sur date fin  
+    if ( type == "focus" ) {
+       document.getElementById("datecr").style.backgroundColor = "yellow"; 
+       document.getElementById("datecr").style.color = "black"; 
+    }
+    
+    if ( type == "blur" ) {
+       document.getElementById("datecr").style.backgroundColor = "";
+       document.getElementById("datecr").style.color = "green";
+    }
+        
+    return;
+}
 
-
-// Gestion système source ---------------------------------
+// Système source -------------------------------------------------
 function source(type) { 
     
     // Controle si erreur sur code colonne 1 
@@ -327,7 +362,7 @@ function source(type) {
     return;
 }
 
-// Gestion système cible ----------------------------------  
+// Système cible --------------------------------------------------------  
 function cible(type) {
     
    // Controle si erreur sur code colonne 1 
@@ -472,7 +507,7 @@ function ValidationGlobale(formulaire) {
 $(function() { 
 
 // Date sélection CRE 
-$("#BdateCRE").datepicker( {
+$("#datecr").datepicker( {
   autoSize: "true",
   altField: "#Bdatedebut",
   closeText: 'Fermer',

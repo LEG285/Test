@@ -39,7 +39,7 @@
              <!-- ID CRE Début -->
               <br><br><br> 
 		      <fieldset class="fieldset"><legend class="legend">ID CRE</legend>
-		         <label for="assure" class="gestip-div1-la1" >N° CRE à transférer :</label>
+		         <label for="assure" class="gestip-div1-la1">N° CRE à transférer :</label>
 		         
  		         <textarea id="gt1" class="gestip-div1-i" textarea name="cass" rows="10" cols="9" maxlength="168" 
 		         onblur="codeAssure('blur')" onfocus="codeAssure('focus')" onkeypress="VerificationCar(event);">
@@ -55,19 +55,20 @@
 
 		      <!-- Autres critères Début -->
 		      <br>
-		      <fieldset class="fieldset"><legend class="legend">Autres critères</legend>
+		      <fieldset class="fieldset"><legend class="legend">Autres critères (facultatif)</legend>
 		      
-                 <!-- Nom adhérent -->
-                 <label for="idnom">Nom adhérent</label>
-                 <input id="nomadh" class="gestip-div1-i" type="text" name="nomAdh" size="30" maxlength="30" onfocus="nomAdherent('focus')" onblur="nomAdherent('blur')" onkeypress="VerificationCar(event);"/>		      
+                 <!-- Type courrier -->
+                 <label for="idtype">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type courrier :</label>
+                 <input id="typecou" class="gestip-div1-1" type="text" name="typeCou" size="8" maxlength="8" onfocus="typeCourrier('focus')" onblur="typeCourrier('blur')" onkeypress="VerificationCar(event);"/>		      
 		      
-                 <!-- Prénom adhérent -->
-                 <label for="idprenom">Prénom adhérent</label>
-                 <input id="prenomadh" class="gestip-div1-i" type="text" name="prenomAdh" size="20" maxlength="20" onfocus="prenomAdherent('focus')" onblur="prenomAdherent('blur')" onkeypress="VerificationCar(event);"/>
+                 <!-- Adhérent -->
+                 <label for="idadh">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code adhérent :</label>
+                 <input id="codeadh" class="gestip-div1-i" type="text" name="codeAdh" size="6" maxlength="6" onfocus="codeAdherent('focus')" onblur="codeAdherent('blur')" onkeypress="VerificationCar(event);"/>
 		      
                  <!-- Date CRE  -->
-                 <label for="periode">Date CRE</label>
-                 <input id="BdateCRE" class="gestip-div1-i" type="text" name="Bdebut" onblur="dateDebut_B('blur')" onfocus="dateDebut_B('focus')" onkeypress="VerificationCar(event);" />
+                 <label for="periode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date CRE :</label>
+                 <input id="datecr" class="gestip-div1-i" type="text" name="dateCr" onblur="dateCRE('blur')" onfocus="dateCRE('focus')" onkeypress="VerificationCar(event);" />
 		      
 		      </fieldset> 
 		      <!-- Autres critères Fin -->
@@ -77,7 +78,7 @@
 			  <fieldset class="fieldset"><legend class="legend">ENVIRONNEMENT</legend>
 	          
 			   <!--Liste environnement source -->
-		      <label for="statut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Depuis environnement de :&nbsp;&nbsp;</label>
+		      <label for="statut" >&nbsp;&nbsp;&nbsp;&nbsp;Depuis l'environnement de :</label>
 		         <select name="stat1" id="ListSource" class="gestip-div1-i" 
 		            		"onblur="source('blur')" onfocus="source('focus')" onchange="source('blur');">
 	             <option selected="selected"></option>
@@ -87,7 +88,7 @@
 	          </select> 			      
   
 			  <!--Liste environnement cible  -->
-		      <label for="statut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vers environnement de :&nbsp;&nbsp;</label>
+		      <label for="statut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vers l'environnement de :&nbsp;&nbsp;</label>
 		         <select name="stat2" id="ListCible" onblur="cible('blur')" class="gestip-div1-i" 
 		                 "onfocus="cible('focus')" onchange="cible('blur');" >
               <option selected="selected"></option>;

@@ -1,6 +1,7 @@
 /****************************************************************
- transfert.js  : javascript applications transfert CRE 
-                 Le 16/06/2025
+ transfert_save.js  : javascript applications transfert CRE 
+                      Le 16/06/2025
+                      Ce fichier est une sauvegarde du fichier transfer.js
 ****************************************************************/
 // Variables globales
 var allowed = false;
@@ -20,7 +21,7 @@ var TableMois = new Array(
 "F&eacute;vrier",
 "Mars",
 "Avril",
-"Mai",
+"Mai", 
 "Juin",  
 "Juillet",
 "Ao&ucirc;t",
@@ -48,12 +49,9 @@ function VerificationCar(e) {
 
 //********************************************************
 //     Gestion formulaire de saisie
-//     Rappel 
-//     focus = récupère le focus
-//     blur  = perd le focus 
 //******************************************************** 
 
-// Codes CRE 1 ---------------------------------------------  
+// Codes CRE Colonne 1 -----------------------------------  
 function codeAssure(type) {
     
     // Initialisation curseur
@@ -82,19 +80,18 @@ function codeAssure(type) {
     document.getElementById("ListCible").style.color = "black";  
     
 	// Initialisation code erreur
-	Erreur[0]=false;Erreur[1]=false;Erreur[2]=false;Erreur[3]=false;Erreur[4]=false; 
+	//Erreur[0]=false;Erreur[1]=false;Erreur[2]=false;Erreur[3]=false;Erreur[4]=false; 
  
      var assure = document.getElementById("gt1").value;
 	//console.log("Longueur code CRE saisi " + assure.length);
     
-    // Focus 
+    // Focus du code Assuré 
     if (type == "focus" && assure == "") {
        document.getElementById("gt1").style.backgroundColor = "yellow"; 
        document.getElementById("gt1").style.color = "black";     
     }
     if (type == "focus" && assure != "") {
        if (isNaN(assure)) {
-         // En cas d'erreur on n'efface plus le champ		
          // document.getElementById("gt1").value= "";
        }
        else { 
@@ -103,6 +100,64 @@ function codeAssure(type) {
        }
 	   
     }
+	  
+	// ---------------------------------------------------------------
+	// Controler longueur de chaque code assuré saisie dans la textearea
+	// Solution a trouver, ajout d'un message ou autre pour la saisie .... 
+	// --------------------------------------------------------------- 
+    //	if (type == "blur" && assure.trim != "") {
+    //		
+    //	   var position = assure.indexOf("\n", 0); 
+    //	   
+    //	   assure = assure.replace(/(\r\n|\n|\r|\t)/gm,"");
+    //	   
+    //	   console.log("1 " + assure.slice(0, 11));
+    //	   console.log("2 " + assure.slice(11, 22));
+    //	   console.log("3 " + assure.slice(22, 33));
+    //	   console.log("4 " + assure.slice(33, 44));
+    //	   console.log("5 " + assure.slice(44, 55));
+    //	   console.log("6 " + assure.slice(55, 66));
+    //	   console.log("7 " + assure.slice(66, 77));
+    //	   console.log("8 " + assure.slice(77, 88));
+    //	   console.log("9 " + assure.slice(88, 99));
+    //	   console.log("10 " + assure.slice(99, 110));
+    //	   
+    //	}
+	   
+	  // var longueur = assure.lenght;
+	   
+	   //if (assure.length != 11) {
+	   //	  alert("La longueur du code CRE doit toujours \u00eatre de 11 caract\u00e9res ! elle est : " + assure.length );
+	   //	  Erreur[0] = true;
+	   //	  document.getElementById("gt1").focus();
+	   //	  // document.getElementById("gt1").value= "";
+	   //	  document.getElementById("Msg").innerHTML = "  ";
+	   //  }
+	   
+//	   if (position != 11 && position != -1) {      // Saisie KO  ----------------
+//	      //console.log(touche1);
+//	      //if (touche1 != 13) {   // <> de la touche Entrée 
+//	          alert("La longueur du code CRE doit toujours \u00eatre de 11 caract\u00e9res ! ");
+//	          Erreur[0] = true;
+//	          document.getElementById("gt1").focus();
+//	          //document.getElementById("gt1").value= "";
+//	          document.getElementById("Msg").innerHTML = "  ";
+//	      //}
+//	   }      
+//	    
+//	   var position = assure.indexOf("\n", 12); 
+//	   if (position != 23 && position != -1) {       // Saisie KO  ----------------
+//	   	      //console.log(touche1);
+//	   	      //if (touche1 != 13) {   // <> de la touche Entrée 
+//	   	          alert("La longueur du code CRE doit toujours \u00eatre de 11 caract\u00e9res ! ");
+//	   	          Erreur[0] = true;
+//	   	          document.getElementById("gt1").focus();
+//	   	         // document.getElementById("gt1").value= "";
+//	   	          document.getElementById("Msg").innerHTML = "  ";
+//	   	      //}
+//	   	 }	     
+	   
+//	}  
 	
     // Blur 
     if (type == "blur" && assure.trim != "") {
@@ -121,26 +176,27 @@ function codeAssure(type) {
 		   if (!Erreur[0]) { 
               document.getElementById("gt1").style.backgroundColor = "";
               document.getElementById("gt1").style.color = "green";
-              //document.getElementById("gt2").focus();
+              document.getElementById("gt2").focus();
 		    }   
        }
+	   
     }
     
     if (type == "blur" && assure.trim == "") {
         document.getElementById("gt1").style.backgroundColor = "";
     }
 
-    return;     // Fin CRE 1
+    return;     // Fin fonction codeAssure colonne 1
 }
 
-// Code CRE 2 -----------------------------------------------
+// Code CRE 2 Colonne 2 --------------------------
 function codeAssure2(type) {
     
     // Initialisation 
     document.body.style.cursor = 'default';  
     var assure2 = document.getElementById("gt2").value;
     
-    // Focus 
+    // Focus du code Assuré 
     if (type == "focus" && assure2.trim == "") {
        document.getElementById("gt2").style.backgroundColor = "yellow"; 
        document.getElementById("gt2").style.color = "black";     
@@ -156,7 +212,7 @@ function codeAssure2(type) {
        
     }
      
-    // Blur 
+    // Blur du code Assuré
     if (type == "blur" && assure2.trim != "") {
 	   assure2 = assure2.replace(/(\r\n|\n|\r)/gm,"");
        if (isNaN(assure2)) {       // Saisie KO -------- 
@@ -183,23 +239,12 @@ function codeAssure2(type) {
         document.getElementById("gt2").style.backgroundColor = "";
     }
 
-    return;     // Fin CRE 2
+    return;     // Fin fonction codeAssure colonne 2
 }
 
 // Type courrier  ----------------------------------------------
 function typeCourrier(type) {
     
-	// Erreur CRE 1  
-	if (Erreur[0]) {
-	    document.getElementById("gt1").focus();
-	    return;
-	}
-	// Erreur CRE 2 
-	if (Erreur[1]) {
-	    document.getElementById("gt2").focus();
-	    return;
-	}
-
     // Initialisation 
     document.body.style.cursor = 'default';  
     var typecourrier = document.getElementById("typecou").value;
@@ -221,23 +266,12 @@ function typeCourrier(type) {
         document.getElementById("typecou").style.backgroundColor = "";
     }
 
-    return;     // Fin type 
+    return;     // Fin fonction
 }
 
 // Code adhérent  -----------------------------------------------
 function codeAdherent(type) {
-
-	// Erreur CRE 1  
-	if (Erreur[0]) {
-	    document.getElementById("gt1").focus();
-	    return;
-	}
-	// Erreur CRE 2 
-	if (Erreur[1]) {
-	    document.getElementById("gt2").focus();
-	    return;
-	}
-	    
+    
     // Initialisation 
     document.body.style.cursor = 'default';  
     var codeadh = document.getElementById("codeadh").value;
@@ -275,18 +309,18 @@ function codeAdherent(type) {
         document.getElementById("codeadh").style.backgroundColor = "";
     }
 
-    return;     // Fin adhérent
+    return;     // Fin fonction 
 }
 
 // Date CRE ---------------------------------------------------
 function dateCRE(type) {
     
-	// Erreur CRE 1  
+	// Erreur CRE colonne 1 
 	if (Erreur[0]) {
 	    document.getElementById("gt1").focus();
 	    return;
 	}
-	// Erreur CRE 2 
+	// Erreur CRE colonne 2 
 	if (Erreur[1]) {
 	    document.getElementById("gt2").focus();
 	    return;
@@ -419,9 +453,7 @@ function cible(type) {
 // Valider Formulaire CRE ---------------------------------
 function ValidationGlobale(formulaire) {
 
-	// --------------------------------------------------------------
-    // Récupération global des données du formulaire 
-	// --------------------------------------------------------------
+    // Récupération de toutes les variables du formulaire 
     var assure     = document.getElementById("gt1").value;
     var assure2    = document.getElementById("gt2").value;
 	var typecourrier = document.getElementById("typecou").value;    
@@ -436,11 +468,10 @@ function ValidationGlobale(formulaire) {
     var SelIndex   = ObjListeC.selectedIndex;
     var vcible     = ObjListeC.options[ObjListeC.selectedIndex].value;
     
-	// -------------------------------------------------------------
-    // Controle global des données saisies
-	// -------------------------------------------------------------
+    // Controle des données saisies
     
-    // Controle CRE 1 ---------------------------------------------- 
+    // 1) Controle validité des CRE saisis 
+    // Assure col 1
     assure = assure.replace(/(\r\n|\n|\r)/gm,"");
     if (isNaN(assure)) {
        //alert("Touche appuyée validation : " + touche1);
@@ -453,7 +484,7 @@ function ValidationGlobale(formulaire) {
        return false;
     }  
  
-    // Controle CRE 2 ----------------------------------------------
+    // Assure col 2
     assure2 = assure2.replace(/(\r\n|\n|\r)/gm,"");
     if (isNaN(assure2)) {
        //alert("Touche appuyée validation : " + touche1);
@@ -466,10 +497,9 @@ function ValidationGlobale(formulaire) {
        return false;
     }
        
-	// Controle présence d'au moins 1 code CRE --------------------------
     if (assure.trim() == '' && assure2.trim() == '') {
        //document.getElementById("Msg").innerHTML = "  ";
-       alert("Un code CRE est obligatoire ! ");
+       alert("Le code CRE est obligatoire ! ");
        Erreur[0] =true;
        document.getElementById("gt1").focus();
        //document.getElementById("gt1").value= "";
@@ -477,41 +507,35 @@ function ValidationGlobale(formulaire) {
        return false;
      } 
      
-	 // Controle cohérence des critères saisis ------------------------------------
-     // Règle:Saisir au moins 2 critères
-	 //var typecourrier = document.getElementById("typecou").value;    
-	 //var codeadh = document.getElementById("codeadh").value;
-	 //var dateCRE = document.getElementById("datecr").value;
-	 
-	 console.log(typecourrier);
-	 console.log(codeadh);
-	 console.log(dateCRE);
-	 
-	 if (typecourrier.trim() != '' && codeadh.trim() == '' && dateCRE.trim() =='') {
-		alert("Saisir un autre critere avec le type courrier ! ");
-		document.getElementById("codeadh").focus();
-		//document.getElementById("gt1").value= "";
-		document.getElementById("Msg").innerHTML = "  ";
-		return false;
-	 } 
-	 
-	 if (typecourrier.trim() == '' && codeadh.trim() != '' && dateCRE.trim() == '') {
-	 	alert("Saisir un autre critere avec le code adhérent ! ");
-	 	document.getElementById("typecourrier").focus();
-	 	//document.getElementById("gt1").value= "";
-	 	document.getElementById("Msg").innerHTML = "  ";
-	 	return false;
-	 }
-	 	 	  
-	if (typecourrier.trim() == '' && codeadh.trim() == '' && dateCRE.trim() != '') {
-		alert("Saisir un autre critere avec le code adhérent ! ");
-		document.getElementById("typecourrier").focus();
-		//document.getElementById("gt1").value= "";
-		document.getElementById("Msg").innerHTML = "  ";
-		return false;
-	}
+    // 2) Controle cohérence des critères saisis dans le formulaire avant envoi requete
+ /*   if (criteres == '')  {
+       //alert("Attention ! Au moins UN crit\350re doit \352tre renseign\351...");
+       document.getElementById("gt1").focus();     
+       Erreur[1] =true;
+       return false;
+    }    
+ */
+     
 	
-    // Controle Environnment source -------------------------------------------
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    // un serveur source doit être renseigné
     if (vsource.trim() == '') {
        alert("Renseigner l'environnement de d\u00e9part !");
        Erreur[2] = true;
@@ -520,7 +544,7 @@ function ValidationGlobale(formulaire) {
        return false;
     }
  
-    // Controle Environnement cible --------------------------------------------
+    // un serveur cible doit être renseigné
     if (vcible.trim() == '') {
        alert("Renseigner l'environnement d'arriv\u00e9e !");
        Erreur[2] = true;
@@ -529,7 +553,7 @@ function ValidationGlobale(formulaire) {
        return false;
     }  
      
-    // Controle env. source <> env cible -------------------------------------------
+    // serveur source doit être <> serveur cible 
     if ((vcible == vsource) | (vsource == "RECETTE" & vcible == "RECETTE et DEV")
          | (vsource == "DEV" & vcible == "RECETTE et DEV")) {
        document.getElementById("Msg").innerHTML = "  ";
@@ -543,7 +567,7 @@ function ValidationGlobale(formulaire) {
     document.body.style.cursor = 'progress';
     return true;    
      
-}    // Fin Valider données formulaire CRE 
+}    // Fin Valider formulaire Transfert des CRE 
 
 //*************************************************************************************
 // Functions Jquery  

@@ -44,7 +44,6 @@
  		         <textarea id="gt1" class="gestip-div1-i" textarea name="cass" rows="10" cols="9" maxlength="168" 
 		         onblur="codeAssure('blur')" onfocus="codeAssure('focus')" onkeypress="VerificationCar(event);">
 		         </textarea>&nbsp;&nbsp;&nbsp;&nbsp;  
-
  
 		        <textarea id="gt2" class="gestip-div1-i" textarea name="cass2" rows="10" cols="9" maxlength="168" 
 		           onblur="codeAssure2('blur')" onfocus="codeAssure2('focus')" onkeypress="VerificationCar(event);">
@@ -68,7 +67,7 @@
 		      
                  <!-- Date CRE  -->
                  <label for="periode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date CRE :</label>
-                 <input id="datecr" class="gestip-div1-1" type="text" name="dateCr" onblur="dateCRE('blur')" onfocus="dateCRE('focus')" onkeypress="VerificationCar(event);" />
+                 <input id="datecr" class="gestip-div1-1" type="text" name="dateCr" onblur="dateCRE('blur')" onfocus="dateCRE('focus')" onkeypress="VerificationCar(event);"/>
 		      
 		      </fieldset> 
 		      <!-- Autres critères Fin -->
@@ -77,7 +76,7 @@
 		      <br> 
 			  <fieldset class="fieldset"><legend class="legend">ENVIRONNEMENT</legend>
 	          
-			   <!--Liste environnement source -->
+			  <!--Liste environnement source -->
 		      <label for="statut" >&nbsp;&nbsp;&nbsp;&nbsp;Depuis l'environnement de :</label>
 		         <select name="stat1" id="ListSource" class="gestip-div1-1" 
 		            		onblur="source('blur')" onfocus="source('focus')" onchange="source('blur');">
@@ -91,7 +90,7 @@
 		      <label for="statut">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vers l'environnement de :&nbsp;&nbsp;</label>
 		         <select name="stat2" id="ListCible" onblur="cible('blur')" class="gestip-div1-1" 
 		                 onfocus="cible('focus')" onchange="cible('blur');" >
-              <option selected="selected"></option>;
+              <option selected="selected"></option>
               <option>RECETTE</option>
               <option>RECETTE et DEV</option>
               <option>DEV</option>

@@ -22,6 +22,10 @@ public class ConnexionDriverJDBCIbm {
 	private static Connection connect;
 	private String DRIVER = "com.ibm.as400.access.AS400JDBCDriver";
 	
+	String jdbcURL = "jdbc:derby:courrierdb;create=true";
+	
+	
+	
 	// Constructeur privé jdbc... initie les connections
 	private ConnexionDriverJDBCIbm(String ServeurDataBaseP, String LoginP, String MdpP, String bibP) {
 
@@ -33,9 +37,11 @@ public class ConnexionDriverJDBCIbm {
 
 		// Connection database IBM i via AS400JDBCDriver
 		try {
-			Class.forName(DRIVER);
-			connect = DriverManager.getConnection("jdbc:as400://" + serveurDB + "/" + bib , login, mdp);
-			System.out.println("Connexion **OK** sur jdbc:as400//" + serveurDB + "/" + bib);
+			//Class.forName(DRIVER); A supprimer
+			//connect = DriverManager.getConnection("jdbc:as400://" + serveurDB + "/" + bib , login, mdp);
+			//System.out.println("Connexion **OK** sur jdbc:as400//" + serveurDB + "/" + bib);
+			connect = DriverManager.getConnection(jdbcURL);	
+			System.out.println("Connexion **OK** sur DataBase Derby");
 		} 
 		catch (Exception e) {
 			System.out.println("Erreur SQL Exception JDBC" + e);

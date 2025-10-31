@@ -497,15 +497,15 @@ function ValidationGlobale(formulaire) {
 	 
 	 if (typecourrier.trim() == '' && codeadh.trim() != '' && dateCRE.trim() == '') {
 	 	alert("Saisir un autre critere avec le code adhérent ! ");
-	 	document.getElementById("typecourrier").focus();
+	 	document.getElementById("typecou").focus();
 	 	//document.getElementById("gt1").value= "";
 	 	document.getElementById("Msg").innerHTML = "  ";
 	 	return false;
 	 }
 	 	 	  
 	if (typecourrier.trim() == '' && codeadh.trim() == '' && dateCRE.trim() != '') {
-		alert("Saisir un autre critere avec le code adhérent ! ");
-		document.getElementById("typecourrier").focus();
+		alert("Saisir un autre critere avec la date du CRE ! ");
+		document.getElementById("typecou").focus();
 		//document.getElementById("gt1").value= "";
 		document.getElementById("Msg").innerHTML = "  ";
 		return false;

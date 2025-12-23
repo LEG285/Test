@@ -21,10 +21,10 @@ public class ConnexionDriverJDBCIbm {
 	// Objets Connection
 	private static Connection connect;
 	private String DRIVER = "com.ibm.as400.access.AS400JDBCDriver";
-	
-	String jdbcURL = "jdbc:derby:courrierdb;create=true";
-	
-	
+
+	// URL jdbc  
+	String jdbcURLAS400 = "jdbc:as400://";
+	String jdbcURLderby = "jdbc:derby://localhost:1527/CourrierDBE;create=true";
 	
 	// Constructeur privé jdbc... initie les connections
 	private ConnexionDriverJDBCIbm(String ServeurDataBaseP, String LoginP, String MdpP, String bibP) {
@@ -35,13 +35,13 @@ public class ConnexionDriverJDBCIbm {
 		this.mdp = MdpP;
 		this.bib = bibP;
 
-		// Connection database IBM i via AS400JDBCDriver
+		// Connection database IBM i 
 		try {
 			//Class.forName(DRIVER); A supprimer
-			//connect = DriverManager.getConnection("jdbc:as400://" + serveurDB + "/" + bib , login, mdp);
-			//System.out.println("Connexion **OK** sur jdbc:as400//" + serveurDB + "/" + bib);
-			connect = DriverManager.getConnection(jdbcURL);	
-			System.out.println("Connexion **OK** sur DataBase Derby");
+			//connect = DriverManager.getConnection(jdbcURLAS400 + serveurDB + "/" + bib , login, mdp);
+			//System.out.println("Connexion **OK** sur " + jdbcURLAS400 + serveurDB + "/" + bib);
+			connect = DriverManager.getConnection(jdbcURLderby, login, mdp);	
+			System.out.println("Connexion **OK** sur " + jdbcURLderby);
 		} 
 		catch (Exception e) {
 			System.out.println("Erreur SQL Exception JDBC" + e);

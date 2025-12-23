@@ -281,7 +281,7 @@ padding:2px 0;
 #entete {
 background-color: silver;
 text-align:center;
-height: 500px;  
+height:auto;   
 }
 
 #main {
@@ -1191,4 +1191,9 @@ option.vert {
 }
 
 /* Fin du CSS */
+
+
+
+
+
 

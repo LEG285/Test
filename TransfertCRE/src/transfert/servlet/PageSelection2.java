@@ -3,7 +3,7 @@
  * Package                : transfert.servlet
  * Class                  : PageSelection2.java 
  *----------------------------------------------------------------------               
- * Objet                  : S�lection CRE nouvelle version avec nouveaux crit�res  
+ * Objet                  : Sélection CRE nouvelle version avec nouveaux critères  
  *----------------------------------------------------------------------
  * Auteur                 : Thierry Le Guillou 
  * Date version initiale  : 03/12/2025
@@ -11,7 +11,7 @@
  * Chemin class jsp       : \apache-tomcat-7.0.69\work\Catalina\localhost\transfert\...
  ********************************************************************* */
 package transfert.servlet;
- 
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -54,11 +54,12 @@ public class PageSelection2 extends HttpServlet {
 	static String p_formulaire[] = new String[7]; 
 	//static String TabCRE[] = {"","","","","","","","","","","","","","","","","","","",""}; 
 	
-	// R�sultat requ�te
+	// Resultat requete
 	static String Message;
 	static boolean OKKO; 
+	static String chaine; 
 	
-	// Pr�paration page
+	// Pr�paration html header 
 	HTMLheader header = new HTMLheader("CRE - Transfert CRE inter-syst&egrave;me",
 			                           "&copy; Groupe Pasteur Mutualit&eacute; - Version 1.1");	
 	
@@ -67,7 +68,6 @@ public class PageSelection2 extends HttpServlet {
      */
     public PageSelection2() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -79,7 +79,7 @@ public class PageSelection2 extends HttpServlet {
 
 		// Nom servlet
 		Servlet = config.getServletName();
-		// R�cup�ration param�tres associ�s au servlet
+		// Récupération paramètres associés au servlet
 	 	// serveurLOC  = getInitParameter("serveurLOC");
 	 	// bibFic      = getInitParameter("bibFichier");
         // DEV
@@ -93,15 +93,23 @@ public class PageSelection2 extends HttpServlet {
         // PROD
 	 	serveurPROD = getInitParameter("serveurPROD");
         loginPROD   = getInitParameter("loginPROD");
-        mdpPROD     = getInitParameter("mdpPROD");
+        mdpPROD     = getInitParameter("mdpPROD"); 
         bibPROD     = getInitParameter("bibPROD");
         // Liens navigation
 		retourMenu = getInitParameter("retourMenu");
  		lienQuitter = getInitParameter("lienQuitter"); 		
 		lienErreur  = getInitParameter("lienErreur");
-		// Valeurs dans ini()
-		System.out.println("Initialisation servlet :" + Servlet);
 		
+		// Initialisation variable(s) pour AutoCompletion ------------------------------------------------
+		RequeteGestionCRE listAutoCompletion = new RequeteGestionCRE(serveurDEV, "AVTTST06", "AVTTST06");
+        chaine = "var liste = " + listAutoCompletion.chargementlistAutoCompletion();
+    	if (!listAutoCompletion.getOKKO()) {chaine = "var liste = [" + "\"" + "!ERREUR!" + "\"" + "]";}
+    	//System.out.println(chaine);
+		// ----------------------------------------------------------------------------------------------
+
+		// Fin init Servlet 
+    	System.out.println("Initialisation servlet :" + Servlet);
+
 	}
 
 	/**
@@ -137,29 +145,29 @@ public class PageSelection2 extends HttpServlet {
 		//                  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20   
 		String TabCRE[] = {"","","","","","","","","","","","","","","","","","","",""};		
 		
-		// Session expiré --> Page Erreur
+		// Session expir�e --> Page Erreur
 		if (sessionHTTP == null) {
 
-			// ------------ A remettre en place apr�s les DEV ---------------------------------------------
-			//request.getRequestDispatcher(lienErreur).forward(request, response);  // a mettre en commentaire pour d�v.
+			// ------------ A remettre en place après DEV ---------------------------------------------
+			//request.getRequestDispatcher(lienErreur).forward(request, response);  // a mettre en commentaire si dev
 			
-			// ------------ Creation d'une session http temporaire pour d�v. -----> A retirer apr�s les DEV
+			// ------------ Creation d'une session http temporaire pour d�v. -----> A retirer après DEV
 			HttpSession SessionLogin = request.getSession(true);
-			//if session is not new then we are switching the session and start
-			// a new one
+			//if session is not new then we are switching the session and start a new one
+			//(Si session n'est pas nouvelle alors nous switchons la session et démarrons une nouvelle) 
 			//if (!(SessionLogin.isNew())) {
 			//   SessionLogin.invalidate();
 			//   SessionLogin = request.getSession(true);
-		    //}
- 
-		// Juste le profil 
-			SessionLogin.setAttribute("Utilisateur", "AVTTST06");
-		    SessionLogin.setAttribute("Serveur", "localhost");
-			SessionLogin.setAttribute("MotdePasse", "AVTTST06");
-			SessionLogin.setAttribute("BibFichier", "AVTGPMDTA");
+			//}
+  
+			// Juste le profil 
+			//SessionLogin.setAttribute("Utilisateur", "AVTTST06");
+			//SessionLogin.setAttribute("Serveur", "localhost");
+			//SessionLogin.setAttribute("MotdePasse", "AVTTST06");
+			//SessionLogin.setAttribute("BibFichier", "AVTGPMDTA");
 
-			// R�cup informations session utilisateur
-			sessionHTTP = request.getSession(false);
+			// Récup des informations session utilisateur
+			//sessionHTTP = request.getSession(false);
 			
 		}
 			
@@ -200,10 +208,6 @@ public class PageSelection2 extends HttpServlet {
 			// Serveur cible 
 			if (request.getParameter("stat2") != null) {p_formulaire[6] = request.getParameter("stat2");}
    		    else {p_formulaire[6] = "";}
-			
-			// TODO : Pr�voir controle des param�tres re�us avant envoi de la requ�te 
-			// ToolBox ctrl = new ToolBox(p_code);			
-            // Controler les codes CRE saisis
 				
 			// Analyse param�tres du formulaire 
 			if (!p_formulaire[0].equals("") || !p_formulaire[1].equals("") ||
@@ -218,7 +222,7 @@ public class PageSelection2 extends HttpServlet {
 					p_formulaire[1] = p_formulaire[1].replace("\r\n", "");
 					//System.out.println("cass...  " + p_formulaire[1]);
 					
-		 			// Chargement des n� de CRE saisis 
+		 			// Chargement des n° de CRE saisis 
 					int  j = 0;
 					// Formulaire n� CRE 1
 					for (int i = 0; i < p_formulaire[0].trim().length(); i = i + 11) {
@@ -229,7 +233,7 @@ public class PageSelection2 extends HttpServlet {
 						 j++;
 							  
 					}
-					// Formulaire n� CRE 2 
+					// Formulaire n° CRE 2 
 					for (int i = 0; i < p_formulaire[1].trim().length(); i = i + 11) {
 						 
 						 try {TabCRE[j] = p_formulaire[1].substring(i, i + 11);}
@@ -282,7 +286,7 @@ public class PageSelection2 extends HttpServlet {
 					   LoginC = loginSession;
 					   MdpC= mdpSession;
 					}
-					 
+					
 					// Initialisation requete CRE ----------------------------------------------
 					RequeteGestionCRE requeteCRE = new RequeteGestionCRE(Serveur, Login, Mdp, Bib,
 							                                             ServeurC, LoginC, MdpC, BibC, 
@@ -309,14 +313,14 @@ public class PageSelection2 extends HttpServlet {
 				        //if (!requeteCRE.getOKKO()) {break;}
 					}
 					 
-					// Message = "E" + " Aucun CRE trait� , relancer votre requ�te..." ;
+					// Message = "E" + " Aucun CRE traité , relancer votre requête..." ;
 					// Message type "E" = Erreur
 					// Message type "I" = Information
 					
 					if (requeteCRE.getOKKO()) {          // Si retour OK afficher message OK
-						Message = "I" + " Termin� ! ----> CRE lu(s) en " + p_formulaire[5] + " : " 
+						Message = "I" + " Terminé ! ----> CRE lu(s) en " + p_formulaire[5] + " : " 
 					              + String.valueOf(requeteCRE.getCompteurLu()) + 
-								  " ----> CRE �crit(s) en " + p_formulaire[6] + " : " 
+								  " ----> CRE écrit(s) en " + p_formulaire[6] + " : " 
 					              + String.valueOf(requeteCRE.getCompteurEcrit());
 					}                 
 					else {                               // Si retour KO afficher message Erreur
@@ -325,24 +329,24 @@ public class PageSelection2 extends HttpServlet {
 					
 			}  // Fin test 		 
 			
-			// Si param�tres --> affichage page HTML r�sultat 
+			// Si paramétres --> affichage page HTML résultat 
 			if (parametres) {
 			 	
-				if (Message.substring(0, 1).equals("I") || Message.substring(0, 1).equals("A")) { // Info/Alert sur page r�sultat 
+				if (Message.substring(0, 1).equals("I") || Message.substring(0, 1).equals("A")) { // Info/Alert page resultat 
 					// Affichage page r�sultat si OK (type "I" pour info, "A" pour Alert)
 					CREHtmlPageResultat(response, Message.substring(1, Message.length()), Message.substring(0, 1));
-	                // Voir possibilit� d'une progression....				
+	                // Voir possibilite d'une progression....				
 				} 
-				else {                                           // Erreur sur page r�sultat/ Suite requ�te CRE
+				else {                                           // Erreur sur page resultat/ Suite requete CRE
 					// Affichage formulaire et message d'erreur
 					CREHtmlFormulaire(response, Message.substring(1, Message.length()));
 				}
-
-                // Pour pr�sentation projet / page de maintenance 				
+ 
+                // Pour presentation projet / page de maintenance 				
 				//response.sendRedirect(request.getContextPath() + "/" + "PageMaintenance.html");
 
-			}
-			// Si pas de param�tres --> Affichage formulaire vide � remplir
+			} 
+			// Si pas de paramètres --> Affichage formulaire vide à remplir
 			else  {CREHtmlFormulaire(response, "");}
 		
 		}   // Fin de test session diff. de null
@@ -372,7 +376,7 @@ public class PageSelection2 extends HttpServlet {
 			// Flux HTML
 			  
 			// <head>
-			  out.println(header.GetPageHeaderCRE().toString());
+			  out.println(header.GetPageHeaderCRE(chaine).toString());
 
 			// <body>
 		      out.println("<body class=\"import\" onload=\"javascript:document.formulairegestip.cass.focus();\">\r\n");
@@ -392,11 +396,11 @@ public class PageSelection2 extends HttpServlet {
 			  out.println("D&eacute;connexion");
 			  out.println("  </button>");
 			   
-			 // ID CRE D�but ----------------------------------------------------------------------
+			 // ID CRE Début ----------------------------------------------------------------------
               out.println("<br><br>");  
 		      out.println("<fieldset class=\"fieldset\"><legend class=\"legend\">ID CRE</legend>\r\n");
-		      out.println("  <label for=\"assure\" class=\"gestip-div1-la1\">N&deg; CRE &agrave; transf&eacute;rer :</label>\r\n");
-		      //<label for="assure" class="gestip-div1-la1">N° CRE à transf&eacute;rer :</label>
+		      out.println("  <label for=\"assure\" class=\"gestip-div1-la1\">N° CRE à transférer :</label>\r\n");
+		      //<label for="assure" class="gestip-div1-la1">N&deg;	CRE &agrave; transf&eacute;rer :</label>
 		      
 		      out.println("  <textarea id=\"gt1\" class=\"gestip-div1-i\" textarea name=\"cass\" rows=\"10\" cols=\"9\" maxlength=\"102\" \r\n");
 		      out.println("  onblur=\"codeAssure('blur')\" onfocus=\"codeAssure('focus')\" onkeypress=\"VerificationCar(event);\">\r\n");
@@ -409,7 +413,7 @@ public class PageSelection2 extends HttpServlet {
 		      out.println("</fieldset>\r\n"); 
 		      // ID CRE Fin -----------------------------------------------------------------------
 		      
-		      // Autres crit�res D�but ------------------------------------------------------------
+		      // Autres critères Début ------------------------------------------------------------
 		      out.println("<br>");
 		      out.println("<fieldset class=\"fieldset\"><legend class=\"legend\">Autres crit&egrave;res</legend>");
 		      
@@ -417,7 +421,7 @@ public class PageSelection2 extends HttpServlet {
               out.println("<label for=\"idtype\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type courrier :&nbsp;&nbsp;</label>\r\n");
               out.println("<input id=\"typecou\" class=\"gestip-div1-1\" type=\"text\" name=\"typeCou\" size=\"8\" maxlength=\"8\" onfocus=\"typeCourrier('focus')\" onblur=\"typeCourrier('blur')\" onkeypress=\"VerificationCar(event);\" >\r\n");		      
 		      
-              // Adh�rent 
+              // Adherent 
               out.println("<label for=\"idadh\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code adh&eacute;rent :</label>\r\n");
               out.println("<input id=\"codeadh\" class=\"gestip-div1-1\" type=\"text\" name=\"codeAdh\" size=\"6\" maxlength=\"6\" onfocus=\"codeAdherent('focus')\" onblur=\"codeAdherent('blur')\" onkeypress=\"VerificationCar(event);\"/>\r\n");
 		        
@@ -426,7 +430,7 @@ public class PageSelection2 extends HttpServlet {
               out.println("<input id=\"datecr\" class=\"gestip-div1-1\" type=\"text\" name=\"dateCr\" onblur=\"dateCRE('blur')\" onfocus=\"dateCRE('focus')\" onkeypress=\"VerificationCar(event);\"/>\r\n");  
 		      
               out.println("</fieldset>\r\n"); 
-		      // Autres crit�res Fin ------------------------------------------------------------		      
+		      // Autres critères Fin ------------------------------------------------------------		      
 		      
 		      // Environnement  ----------------------------------------------------------------------
 		      out.println("<br><br>"); 
@@ -459,17 +463,17 @@ public class PageSelection2 extends HttpServlet {
 			  out.println("</button>");
 		      out.println("<br>\r\n");
 		      
-	          // Erreurs   
+		      out.println("</fieldset>\r\n");
+
+	          // Message erreur après traitement   
               if (!LibelleMessage.isEmpty()) {out.println("<span id=\"Msg\" class=\"" +"erreur" + "\"" + ">" + LibelleMessage.toString() + "</span>");}
               if (LibelleMessage.isEmpty())  {out.println("<span id=\"Msg\" class=\"" +"erreur" + "\"" + ">&nbsp;&nbsp</span>");}
-		      
-		      out.println("</fieldset>\r\n");
 		      
 		      out.println("</form>\r\n");
 		      out.println("</div>\r\n");
 		      out.println("</body>\r\n");
 		      
-			// Pied
+			  // Pied
 			  out.println(header.GetPageFooter().toString());
 		      
 		      out.println("</html>\r\n");		 
@@ -482,7 +486,7 @@ public class PageSelection2 extends HttpServlet {
 
 		return EtatPageHTML;
 
-	} // end of CREHtmlFormulaire()
+	} // End of CREHtmlFormulaire()
 
 	/**
 	 * @see HcrLoginHtmlPage(HttpServletRequest res, String Erreur)
@@ -506,7 +510,7 @@ public class PageSelection2 extends HttpServlet {
 
 			// Flux HTML
 			// <head>
-			out.println(header.GetPageHeaderCRE().toString());
+			out.println(header.GetPageHeaderCRE(chaine).toString());
 		      
 			// <body>
 		    out.println("<body class=\"import\" onload=\"javascript:document.formulairegestip.cass.focus();\">\r\n");
@@ -529,7 +533,7 @@ public class PageSelection2 extends HttpServlet {
 			// ID CRE D�but ----------------------------------------------------------------------
             out.println("<br><br>");  
 		    out.println("<fieldset class=\"fieldset\"><legend class=\"legend\">ID CRE</legend>\r\n");
-		    out.println("  <label for=\"assure\" class=\"gestip-div1-la1\" >N&deg; CRE &agrave; transf&eacuterer :</label>\r\n");
+		    out.println("  <label for=\"assure\" class=\"gestip-div1-la1\" >N° CRE à transférer :</label>\r\n");
 		      
 		    out.println("  <textarea id=\"gt1\" class=\"gestip-div1-i\" textarea name=\"cass\" rows=\"10\" cols=\"9\" maxlength=\"102\" \r\n");
 		    out.println("  onblur=\"codeAssure('blur')\" onfocus=\"codeAssure('focus')\" onkeypress=\"VerificationCar(event);\">\r\n");
@@ -542,7 +546,7 @@ public class PageSelection2 extends HttpServlet {
 		    out.println("</fieldset>\r\n"); 
 		    // ID CRE Fin -----------------------------------------------------------------------
 
-		    // Autres crit�res D�but ------------------------------------------------------------
+		    // Autres critères Début ------------------------------------------------------------
 		    out.println("<br>");
 		    out.println("<fieldset class=\"fieldset\"><legend class=\"legend\">Autres crit&egrave;res</legend>");
 		      
@@ -550,7 +554,7 @@ public class PageSelection2 extends HttpServlet {
             out.println("<label for=\"idtype\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Type courrier :&nbsp;&nbsp;</label>\r\n");
             out.println("<input id=\"typecou\" class=\"gestip-div1-1\" type=\"text\" name=\"typeCou\" size=\"8\" maxlength=\"8\" onfocus=\"typeCourrier('focus')\" onblur=\"typeCourrier('blur')\" onkeypress=\"VerificationCar(event);\" >\r\n");		      
 		      
-            // Adh�rent 
+            // Adherent 
             out.println("<label for=\"idadh\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Code adh&eacute;rent :</label>\r\n");
             out.println("<input id=\"codeadh\" class=\"gestip-div1-1\" type=\"text\" name=\"codeAdh\" size=\"6\" maxlength=\"6\" onfocus=\"codeAdherent('focus')\" onblur=\"codeAdherent('blur')\" onkeypress=\"VerificationCar(event);\"/>\r\n");
 		        
@@ -559,14 +563,14 @@ public class PageSelection2 extends HttpServlet {
             out.println("<input id=\"datecr\" class=\"gestip-div1-1\" type=\"text\" name=\"dateCr\" onblur=\"dateCRE('blur')\" onfocus=\"dateCRE('focus')\" onkeypress=\"VerificationCar(event);\"/>\r\n");  
 		      
             out.println("</fieldset>\r\n"); 
-		      // Autres crit�res Fin ------------------------------------------------------------		      
+		      // Autres critères Fin ------------------------------------------------------------		      
 		    
 	    
 		    // Environnement  ----------------------------------------------------------------------
 		    out.println("<br><br>"); 
 			out.println("<fieldset class=\"fieldset\"><legend class=\"legend\">Environnements</legend>\r\n");
 	          
-			// Liste syt�me source ------------------------
+			// Liste sytème source ------------------------
 		    out.println("<label for=\"statut\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Depuis syst&egrave;me source :&nbsp;</label>\r\n");
 		    out.println("<select name=\"stat1\" id=\"ListSource\" class=\"gestip-div1-i\" "
 		            		+ "onblur=\"source('blur')\" onfocus=\"source('focus')\" onchange=\"source('blur');\">");
@@ -576,7 +580,7 @@ public class PageSelection2 extends HttpServlet {
 	        out.println("<option>DEV</option>");
 	        out.println("</select>"); 			    
 
-			// Liste syst�me cible ------------------------
+			// Liste système cible ------------------------
 		    out.println("<label for=\"statut\">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Vers syst&egrave;me cible :&nbsp;&nbsp;</label>\r\n");
 		    out.println(" <select name=\"stat2\" id=\"ListCible\" onblur=\"cible('blur')\" class=\"gestip-div1-i\" "
 		                + "onfocus=\"cible('focus')\" onchange=\"cible('blur');\" >");
@@ -593,7 +597,7 @@ public class PageSelection2 extends HttpServlet {
 			out.println("</button>");
 		    out.println("<br>\r\n");
 
-	        // Info. requ�te 
+	        // Info. requete 
 		    //if (TypeErreur.equals("I")) {out.println("<span id=\"Msg\" class=\"" +"info" + "\"" + ">"   + Erreur.toString() + "</span>");}
             //if (TypeErreur.equals("E")) {out.println("<span id=\"Msg\" class=\"" +"erreur" + "\"" + ">" + Erreur.toString() + "</span>");}
 		      
@@ -628,16 +632,3 @@ public class PageSelection2 extends HttpServlet {
 	} // end of CREHtmlPageResultat
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

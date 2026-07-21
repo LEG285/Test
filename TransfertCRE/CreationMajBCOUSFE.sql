@@ -82,11 +82,12 @@ CREATE TABLE AVTGPMDTA.BCOUSFE (
 -- Vérification 
 select * from AVTGPMDTA.BCOUSFE where FECCOU = 25297000005; 
 
-select * from AVTGPMDTA.bcousfe where feccou = 25293000011                    
+select * from AVTGPMDTA.bcousfe where feccou = 25293000011;                    
+
+
+select * from avtgpmdta.bcousfe where  fenadh = 690028  and feycou = 'APCOGM'
 ;
 
-
-select count(*) from avtgpmdta.bcousfe;
 
 -- --------------------------------------------------------------------
 -- AVTMPGDTA (RECETTE) 
@@ -131,6 +132,15 @@ delete from avtgpmdr.bcousfe;
 -- Test 
 select * from AVTGPMDTAX.bcousfe;
 
+-- Lecture BCOUSFE 
+select * from avtgpmdta.bcousfe;
+
+select * from avtgpmdta.bcousfd where FECCOU = 25293000010                
+
+;
+
+
+select * from avtgpmdr.bcousfe;
 
 
 

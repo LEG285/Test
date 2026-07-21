@@ -3,7 +3,7 @@
  * Projet                 : PRESTIJ - AUTOMATISATION IJ   
  * Package                : transfert.pages
  * Class                  : HTMLheader 
- *----------------------------------------------------------------------               
+ * ----------------------------------------------------------------------               
  * Objet                  : Chargement du <header> et <footer>
  *----------------------------------------------------------------------
  * Auteur                 : Thierry Le Guillou 
@@ -27,7 +27,7 @@ public class HTMLheader {
 		this.Pied = pied;
 	}
     
-	// HTML <header>
+	// HTML <header> BASE
 	public StringBuffer GetPageHeaderBase() {
 
 		// Vider le buffer
@@ -54,7 +54,7 @@ public class HTMLheader {
             sbh.append("<script type=\"text/javascript\" src=\"//code.jquery.com/ui/1.12.1/jquery-ui.js\"></script>");
             sbh.append("<script type=\"text/javascript\" src=\"bootstrap-3.3.7-dist/js/bootstrap.min.js\"></script>");   
             
- 	        sbh.append("<!-- Si la version du navigateur est inférieure a IE 9,.... -->");
+ 	        sbh.append("<!-- Si la version du navigateur est inférieure a IE 9,.... -->");
 	        sbh.append("<!--[if lt IE 9]>");
 	        sbh.append("  <script src=\"//html5shim.googlecode.com/svn/trunk/html5.js\"></script>");
 	        sbh.append("  <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>");
@@ -69,13 +69,12 @@ public class HTMLheader {
 		 
 	} 
 
-	// HTML <header> CRE 
-	// Chargement page sélection CRE
-	public StringBuffer GetPageHeaderCRE() {
+	// HTML <header> CRE (Chargement pour page sélection CRE)
+	public StringBuffer GetPageHeaderCRE(String SourceAutoCompletion) {
 
 		// Vider le buffer
 		sbh.delete(0, sbh.length());
-		
+
 		// <head> 
 		sbh.append("<!DOCTYPE html>");
         sbh.append("<html>");
@@ -101,8 +100,19 @@ public class HTMLheader {
             sbh.append("<script type=\"text/javascript\" src=\"js/datatables.js\"></script>");
             sbh.append("<script type=\"text/javascript\" src=\"js/transfert.js\"></script>");
             sbh.append("<script type=\"text/javascript\" src=\"js/plug-in-jquery.js\"></script>");
-               
- 	        sbh.append("<!-- Si la version du navigateur est inférieure a IE 9,.... -->");
+
+            // Initialisation script autocompletion
+            sbh.append("<script type=\"text/javascript\">");
+            sbh.append("$(function() {");
+            sbh.append(SourceAutoCompletion + ";");
+            sbh.append("$(\"#typecou\").autocomplete({");
+            sbh.append("source: liste");		 
+    				   //minLength: 1
+            sbh.append("});});");
+    		sbh.append("</script>");    			
+            // Fin Initialisation script autocompletion
+    		
+ 	        sbh.append("<!-- Si la version du navigateur est inférieure a IE 9,.... -->");
 	        sbh.append("<!--[if lt IE 9]>");
 	        sbh.append("  <script src=\"//html5shim.googlecode.com/svn/trunk/html5.js\"></script>");
 	        sbh.append("  <script src=\"https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js\"></script>");
@@ -134,4 +144,5 @@ public class HTMLheader {
         return sbf;
 	}       
  	
-}  // Fin class déconnexion
+}  // Fin class 
+

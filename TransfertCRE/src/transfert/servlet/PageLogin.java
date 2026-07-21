@@ -13,7 +13,7 @@
  ********************************************************************* */
 package transfert.servlet;
 
-import javax.servlet.*;
+import javax.servlet.*; 
 import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 import java.util.*;
@@ -23,26 +23,28 @@ import java.io.*;
 import com.ibm.as400.access.*;
 import transfert.pages.*;
     
-@WebServlet(description = "Saisie login utilisateur Transfert", urlPatterns = { "/transfert.servlet.PageLogin" })
+//@WebServlet(description = "Saisie login utilisateur Transfert", urlPatterns = { "/transfert.servlet.PageLogin" })
+@WebServlet(description = "Saisie login utilisateur Transfert CRE", urlPatterns = { "/PageLogin" })
 /**
  * Servlet implementation class TransfertLogin  
- */    
+ */     
 public class PageLogin extends HttpServlet {  
 	         
-	// Déclaration variables et constantes 
+	// Déclaration variables et constantes  
 	private static final long serialVersionUID = 1L;
     static final String TITRE = "Connexion sur le serveur : ";
 	static final String ESP = "&nbsp;";                           // one space
 	static String string_date;                                    // Date                        
 	static String string_heure;                                   // Heure  
 	              
-	// Use to connect on AS400. 
-	static String Serveur = null;                                    
+	// Use to connect on AS400.   
+	static String Serveur = null;                                      
 	static AS400 systemI  = null;                                  // server system i  
 		 
 	// Initialisation variables HTTP  
 	static String Programme, Adresse, Context, Scheme,  User, Acceuil;
 	static String Servlet, Pack, Workspace;	   
+	static String MapServlet;
 	
 	// Variables paramètres servlet serveurs/version CSS/version JS 
     static String serveurDB2, serveurLOC, serveurDEV, serveurREC, serveurPROD,
@@ -53,7 +55,6 @@ public class PageLogin extends HttpServlet {
     */
     public PageLogin() {
           super();
-           // TODO Auto-generated constructor stub
     }
     
     /**
@@ -63,16 +64,17 @@ public class PageLogin extends HttpServlet {
 	public void init(ServletConfig config) throws ServletException {
     
 		super.init(config);
-  
+
 		// Nom servlet
 		Servlet    = config.getServletName();
 		// Récupération paramètres associés au servlet
 	 	versionCSS = getInitParameter("versionCSS");
 	 	versionJS  = getInitParameter("versionJS"); 
 		lien       = getInitParameter("lien");  
-	 	   
+		MapServlet = getInitParameter("mapping");
+		
         // Message console dans ini()  
-		 System.out.println( "Initialisation servlet : " + Servlet );
+		System.out.println( "Initialisation servlet : " + Servlet );
 	    
     }  // end of init          
      
@@ -82,16 +84,16 @@ public class PageLogin extends HttpServlet {
     @Override
 	synchronized protected void doGet(HttpServletRequest request, HttpServletResponse res) throws ServletException, IOException {
  
-		  // TODO Auto-generated method stub  
-	
 		  // Initialisation port + adresse + programme serveur web
 		  int    PortN = request.getServerPort();
 	      String Port  = new String(); 
-	      Port         = String.valueOf(PortN); 
+	      Port         = String.valueOf(PortN);   
 	      Serveur      = request.getServerName();
 	      Adresse      = request.getServerName() + ":" + Port;
           Context      = request.getContextPath() + "/";
           Scheme       = request.getScheme() + "://";
+          //HttpServletMapping ddd = request.getHttpServletMapping();
+          //MapServlet = "PageLogin"; //ddd.getMatchValue();
           
  		  // Envoi flux HTML 
 		  prestijLoginHtml (res , "0");  
@@ -209,7 +211,7 @@ public class PageLogin extends HttpServlet {
 		String MotdePasseMaj = MotdePasse;
 		
 		// Détermination de l'environnement d'exécution
-		if (ServeurMaj.equals("LOCALHOST"))               {Serveur = "S44C0638";} // Forcer le serveur DEV 
+		if (ServeurMaj.equals("LOCALHOST"))                 {Serveur = "S44C0638";} // Forcer le serveur DEV 
 		//if (ServeurMaj.equals(serveurDEV.toUpperCase()))  {Serveur = serveurDEV;}	
 		//if (ServeurMaj.equals(serveurREC.toUpperCase()))  {Serveur = serveurREC;}	
 		//if (ServeurMaj.equals(serveurPROD.toUpperCase())) {Serveur = serveurPROD;}
@@ -240,7 +242,7 @@ public class PageLogin extends HttpServlet {
 	     boolean EtatPageHTML = Erreur.isEmpty();
 	        
 		 // Chargement arguments pages HTML
-		 String [] argument = new String[] {Scheme, Adresse, Context, Servlet, Serveur, Erreur};
+		 String [] argument = new String[] {Scheme, Adresse, Context,  MapServlet, Serveur, Erreur};
 		 Login pageHTML = new Login(argument);
 	     
 		 // Initialisation Cache   
@@ -258,3 +260,29 @@ public class PageLogin extends HttpServlet {
 	}  // end prestijLoginHtml
 
 } // End of Class
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

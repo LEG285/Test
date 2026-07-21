@@ -36,6 +36,7 @@ public class RequeteGestionCRE {
 	private Statement stmtlectCRE;
 	private Statement stmtinsertCRE;
 	private Statement stmtcompteurCRE;
+	private Statement stmtAutoCompletion;
  	
  	// BCOUSFE
 	private ResultSet requetelectCRE;
@@ -104,6 +105,10 @@ public class RequeteGestionCRE {
 	private Vector<BigDecimal> bcousfdFELGBLO = new Vector<BigDecimal>();
 	private Vector<String> bcousfdFEZDETCOU = new Vector<String>();
 	
+    // Variables pour AutoCompletion code courrier 
+	private final String TBLASSFCOUS = "NPFIC.ASSFCOUS";  // Bib. en dure, la table est toujours dans cette bib.
+	private ResultSet requeteAutoCompletion;
+	
 	// Variables de travail 
 	private java.sql.Date Datenulle = java.sql.Date.valueOf("0001-01-01");  // = 0001-01-01
 	private java.sql.Time Timenulle = java.sql.Time.valueOf("00:00:00");    // = 00:00:00
@@ -131,8 +136,17 @@ public class RequeteGestionCRE {
 	    
 	}   // end of Ctor
 
+	// Ctor RequeteGestionCRE 2 - Autocompletion type courrier
+	public RequeteGestionCRE(String serveurDev, String loginDev, String mdpDev) {
+		
+		this.serveur      = serveurDev;
+		this.login        = loginDev;
+		this.mdp          = mdpDev;
+	    
+	}   // end of Ctor	2
+	
 	// -------------------------------------------------------------------------------------	 
-    // Lecture CRE Autres Crit�res
+    // Lecture CRE Autres Critères
 	// --------------------------------------------------------------------------------------	 
 	public void lectureCREAutreCriteres() {
  
@@ -180,7 +194,7 @@ public class RequeteGestionCRE {
 		// 1) TYPE COURRIER / ADHERENT
 		if (!parametres[2].equals("") && !parametres[3].equals("")) {
 			querylectCRE = "WHERE FEYCOU = '" + parametres[2] + "' "
-            	          + "AND FENADH = '" + parametres[3] + "'"; 
+            	          + "AND FENADH = " + parametres[3]; 
 		}
         // 2) TYPE COURRIER / DATE 
 		if (!parametres[2].equals("") && !parametres[4].equals("")) {
@@ -191,14 +205,14 @@ public class RequeteGestionCRE {
 		// 3) ADHERENT / DATE
 		if (!parametres[3].equals("") && !parametres[4].equals("")) {
 			MadateCreation = FormatDate.FormatPeriodeAAMMJJ(parametres[4]) ;
-			querylectCRE = "WHERE FENADH = '" + parametres[3] + "' "
+			querylectCRE = "WHERE FENADH = " + parametres[3] + " "
             	           + "AND FEDCRT = '" + MadateCreation + "'"; 
 		} 
 		// 4) TYPE COURRIER / ADHERENT / DATE 
 		if (!parametres[2].equals("") && !parametres[3].equals("") && !parametres[4].equals("")) {
 			MadateCreation = FormatDate.FormatPeriodeAAMMJJ(parametres[4]) ;
 			querylectCRE = "WHERE FEYCOU = '" + parametres[2] + "' "
-            	           + "AND FENADH = '" + parametres[3] + "' "
+            	           + "AND FENADH = " + parametres[3] + " "
             	           + "AND FEDCRT = '" + MadateCreation + "'"; 
 		}
 		
@@ -250,41 +264,41 @@ public class RequeteGestionCRE {
 		      MessageErreur = "EErreur SQL Exception... " + e;
 	        }
 
-	        // Non trouv� BCOUSFE / BCOUSFD---------------------------------------------- 	
-		    if (!TrouveCRE) {
+	        // Non trouvé BCOUSFE / BCOUSFD---------------------------------------------- 	
+		    if (!TrouveCRE && OK) {
 			   OK = false;
-		       MessageErreur = "E" + " Aucun CRE pour les crit�res choisis... " ;
+		       MessageErreur = "E" + " Aucun CRE pour les critères choisis... " ;
 		    }
 
          }	// Fin test compteur CRE <= 20
          else { 
         	 OK = false;
-		     MessageErreur = "A" + " Nombre CRE lus sup�rieur � la limite autoris�e, modifier les crit�res... " ;       
+		     MessageErreur = "A" + " Nombre CRE lus supérieur à la limite autorisée, modifier les critères... " ;       
          } 
         
          //	---------------------------------------------------------------------------	 
-		 // D�connexion Total JDBC serveur source 
+		 // Déconnexion Total JDBC serveur source 
 		 // ---------------------------------------------------------------------------
 		 try { 
 			 ConnexionDriverJDBCIbm.fermer();
-		     System.out.println("D�connexion totale ** OK ** du serveur " + serveur);
+		     System.out.println("Déconnexion totale ** OK ** du serveur " + serveur);
 	     }
 	     catch (Exception e) {
 			 OK = false;
-		     MessageErreur = "E" + " Probl�me d�connexion totale du serveur " + serveur;
-	    	 System.out.println("Erreur d�connexion totale ... " + e);
+		     MessageErreur = "E" + " Problème déconnexion totale du serveur " + serveur;
+	    	 System.out.println("Erreur déconnexion totale ... " + e);
 	     }
 		 
-	} // Fin Lecture CRE a transf�rer
+	} // Fin Lecture CRE a transférer
 
 	// -------------------------------------------------------------------------------------
 	// Rechercher CRE d�tail dans BCOUSFD
 	// -------------------------------------------------------------------------------------	 
 	public void rechercheCREDetail(String NumCRE) {
 		
-			// Initialisation requ�te
+			// Initialisation requéte
 		    //String NumCREString = String.valueOf(Numcre);
-	     	String querylectCRED = "SELECT * FROM " + bib + "."+ TBLBCOUSFD + " WHERE FECCOU = '" +  NumCRE + "'" 
+	     	String querylectCRED = "SELECT * FROM " + bib + "."+ TBLBCOUSFD + " WHERE FECCOU = " +  NumCRE + " " 
 			                      + " ORDER BY FENLIGC" ;
 	     	
 			// Lecture BCOUSFD et chargement tableau
@@ -305,7 +319,6 @@ public class RequeteGestionCRE {
 				stmtCRED.close();
 	   		} 
 			catch (SQLException e) {
-				// TODO Auto-generated catch block
 				System.out.println("Erreur SQL Exception... " + e);
 				OK = false;
 				MessageErreur = "EErreur SQL Exception... " + e;
@@ -363,7 +376,7 @@ public class RequeteGestionCRE {
 		   //String test = "25169000013";
 		   querylectCRE = "SELECT * "
                  	     + "FROM " + bib + "."+ TBLBCOUSFE + " " 
-				         + "WHERE FECCOU = '" + NumCRE + "'"; 
+				         + "WHERE FECCOU = " + NumCRE; 
 		   
 		   try {
 			   
@@ -417,9 +430,9 @@ public class RequeteGestionCRE {
 	         }
 		   
 		     // Non trouv� BCOUSFE / BCOUSFD---------------------------------------------- 	
-			 if (!TrouveCRE) {
+			 if (!TrouveCRE && OK) {
 				 OK = false;
-			     MessageErreur = "E" + " Aucun CRE pour les crit�res choisis... " ;
+			     MessageErreur = "E" + " Aucun CRE pour les critères choisis... " ;
 			 }		
 		   
 	    }
@@ -433,7 +446,7 @@ public class RequeteGestionCRE {
 	    }
 	    catch (Exception e) {
 			 OK = false;
-		     MessageErreur = "E" + " Problème d�connexion totale du serveur source " + serveur;
+		     MessageErreur = "E" + " Problème déconnexion totale du serveur source " + serveur;
 	    	 System.out.println("Erreur déconnexion totale ... " + e);
 	    }		
 		
@@ -446,20 +459,20 @@ public class RequeteGestionCRE {
  
 		// Flag �tat recherche
 		OK = true;
-		String NumCRE = "";
+		String NumCRE = ""; 
 		
 		for (int i = 0; i < bcousfeFECCOU.size(); i++) { 
 
 			TrouveCREInsert = false;
 			System.out.println("CRE......." + bcousfeFECCOU.elementAt(i));
 			System.out.println("Courrier.." + bcousfeFEYCOU.elementAt(i));
-			System.out.println("Adh�rent.." + bcousfeFENADH.elementAt(i));
+			System.out.println("Adhérent.." + bcousfeFENADH.elementAt(i));
 			System.out.println("Date......" + bcousfeFEDCRT.elementAt(i));
 			
 			// CONTROLE AVANT INSERT DANS BCOUSFE --------------------------------------------
 			// String test = "25169000013";
 			NumCRE = String.valueOf(bcousfeFECCOU.elementAt(i));
-			querylectCRE = "SELECT * " + "FROM " + bibC + "." + TBLBCOUSFE + " " + "WHERE FECCOU = '" + NumCRE + "'";
+			querylectCRE = "SELECT * " + "FROM " + bibC + "." + TBLBCOUSFE + " " + "WHERE FECCOU = " + NumCRE;
 			try {
  			    // Ouverture connexion sur serveur source choisi pour Insert
 				stmtinsertCRE = ConnexionDriverJDBCIbm.ouvrir(serveurC, loginC, mdpC, bibC).createStatement();
@@ -534,23 +547,17 @@ public class RequeteGestionCRE {
 			 
 		} // Fin Boucle For 			
 			
-        //if (TrouveCREInsert) {
-        //  OK = false; 
-        //  MessageErreur = "E" + " Le num�ro de CRE " + NumCRE + " est d�j� pr�sent en " + parametres[3] + ","   
-        //                  + " Il n'y a eu aucune MAJ pour ce CRE, ni pour les suivants...";
-        //}
-			
    		// -------------------------------------------------------------------------
 		// D�connexion Total JDBC serveur Cible
    		// ------------------------------------------------------------------------
 		 try { 
 			 ConnexionDriverJDBCIbm.fermer();
-		     System.out.println("D�connexion totale ** OK ** du serveur cible " + serveurC);
+		     System.out.println("Déconnexion totale ** OK ** du serveur cible " + serveurC);
 	     }
 	     catch (Exception e) {
 			 OK = false;
-		     MessageErreur = "E" + " Probl�me d�connexion totale du serveur cible " + serveurC;
-	    	 System.out.println("Erreur d�connexion totale ... " + e);
+		     MessageErreur = "E" + " Probléme déconnexion totale du serveur cible " + serveurC;
+	    	 System.out.println("Erreur déconnexion totale ... " + e);
 	     }		
 		
 	} // Fin INSERT CRE ----------------------------------------------------------------------- 
@@ -591,11 +598,13 @@ public class RequeteGestionCRE {
 		
 	} // Fin INSERT CRE DETAIL ----------------------------------------------- 
 	
-	
-	// Compteur CRE suivant crit�res choisis
+	// -----------------------------------------------------------------------------------------
+	// Compteur CRE suivant critères choisis
+	// -----------------------------------------------------------------------------------------	
 	public Integer compteurCREavantLecture(String Requete) {
 
 	    int compteur = 0;
+	    
 		try {
 			// Ouverture connexion sur serveur source & requete comptage
 			stmtcompteurCRE = ConnexionDriverJDBCIbm.ouvrir(serveur, login, mdp, bib).createStatement();
@@ -614,7 +623,47 @@ public class RequeteGestionCRE {
 		
 	} // Fin Compteur CRE ---------------------------------------------------- 
 	
-	// getter OK/KO ----------------------------------------------------------
+	// -----------------------------------------------------------------------------------------
+	// Chargement list pour AutoCompletion 
+	// -----------------------------------------------------------------------------------------	
+	public ArrayList<String> chargementlistAutoCompletion() {
+		
+		OK = true;
+	    ArrayList<String> typecourrier = new ArrayList<>();
+	    String RequeteAutoCompletion = "SELECT ASCTYPCS FROM " + TBLASSFCOUS ;
+		try {
+			// Ouverture connexion sur serveur source & requete comptage
+			stmtAutoCompletion = ConnexionDriverJDBCIbm.ouvrir(serveur, login, mdp, bib).createStatement();
+			requeteAutoCompletion = stmtAutoCompletion.executeQuery(RequeteAutoCompletion);
+			while (requeteAutoCompletion.next()) {
+				typecourrier.add("\"" + requeteAutoCompletion.getString(1).trim() +"\"");
+			}
+			requeteAutoCompletion.close();	
+		}
+		catch (SQLException e) {
+		  System.out.println("Erreur SQL Exception... " + e);
+		  OK = false;
+		  MessageErreur = "EErreur SQL Exception... " + e;
+		}
+		
+        //	---------------------------------------------------------------------------	 
+		 // D�connexion Total JDBC serveur 
+		 // ---------------------------------------------------------------------------
+		 try { 
+			 ConnexionDriverJDBCIbm.fermer();
+		     System.out.println("Déconnexion totale ** OK ** du serveur " + serveur);
+	     }
+	     catch (Exception e) {
+			 OK = false;
+		     MessageErreur = "E" + " Probléme déconnexion totale du serveur " + serveur;
+	    	 System.out.println("Erreur déconnexion totale ... " + e);
+	     }
+		
+		return typecourrier;
+		
+	} // Fin Chargement list AutoCompletion ----------------------------------------- 
+	
+	// getter OK/KO ----------------------------------------------------------------
 	public boolean getOKKO() {
 		return OK;
 	}
@@ -635,7 +684,6 @@ public class RequeteGestionCRE {
 	}
 	
 }
-
 
 
 
